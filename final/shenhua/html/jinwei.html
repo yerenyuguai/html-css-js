@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>精卫填海</title>
+		<link rel="stylesheet" href="../css/shenghua.css">
+		<style>
+			.text{
+				margin-left:100px;
+				width:70%;
+			}
+			img{
+				width:100%;
+				height:380px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="divboss">
+				<div id="left" class="div1">
+					<div class="left_div">
+						<span id="sheng" >神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi">事</span>
+					</div>
+				</div>
+				
+				<div id="middle" class="div2">
+					<span style="font-size: 40px;"><i>精卫填海~</i></span>
+					<div class="text">
+					    <p>&nbsp;&nbsp;&nbsp;&nbsp;精卫填海是《 山海经 》记叙的一则故事，说的是中国 上古 时期一种叫精卫的鸟努力填平大海。 《山海经》记述有一种鸟。 它的名字叫精卫。 精卫原来是 炎帝 宠爱的女儿，有一天她去东海玩，可是突然风暴袭来，她死了。 女娃变成了鸟，名字就叫作“精卫鸟”。 精卫鸟去西山衔来石子儿和树枝，一次又一次投到大海里，想要把东海填平。 晋代 诗人 陶渊明 写诗说：“精卫衔微木，将以填沧海”。 后来人们常用“精卫填海”这句 成语 ，比喻按既定的目标坚毅不拔地奋斗到底。 原文：又北二百里，曰发鸠之山，其上多柘木，有鸟焉，其状如乌，纹首，白喙，赤足，名曰“精卫”，其鸣自詨。 是炎帝之少女，名曰女娃。 女娃游于东海，溺而不返，故为精卫，常衔西山之木石，以堙于东海。 漳水出焉，东流注于河。</p>
+						<br><br>
+						<img src="../img/jinwei.jpg">
+					</div>
+					
+				</div>
+				<div id="right" class="div3">
+					<div class="left_div">
+						<span id="sheng2">神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua2">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu2">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi2">事</span>
+					</div>
+				</div>
+			</div>
+		</body>
+		<script  src="../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+			var str = ["#000000","#2F0000","#600030","#460046","#3C3C3C","#600000","#9F0050","#D9006C","#00E3E3","#02F78E","#28FF28","#EA7500","#FFDC35","#FFF8D7","#6FB7B7","#CF9E9E","#F3F3FA","#9F4D95","#336666","#CCFF80","#EAC100","#642100","#CEFFCE","#96FED1","#00E3E3"];
+			var hanziLeft = ["#sheng","#hua","#gu","#shi"];
+			var hanziRight = ["#sheng2","#hua2","#gu2","#shi2"];
+			$(function(){
+				setInterval("changeColor()",300);
+			});
+			
+			/* 实现文字颜色动态改变 */
+			function changeColor(){
+				//随机获取一个颜色
+				var len = str.length
+				var index = Math.round(Math.random()*len+1);
+				//随机获取一个字
+				var index2 = Math.round(Math.random()*4);
+				$(hanziLeft[index2]).attr("style","color:"+str[index]);
+				$(hanziRight[index2]).attr("style","color:"+str[index]);
+			}
+			
+		</script>
+	</body>
+</html>

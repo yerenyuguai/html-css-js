@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>神话部分</title>
+		<link rel="stylesheet" href="../css/shenghua.css">
+	</head>
+	
+	<body>
+		<div class="divboss">
+			<div id="left" class="div1">
+				<div class="left_div">
+					<span id="sheng" >神</span>
+				</div>
+				<br>
+				<div class="left_div">
+					<span id="hua">话</span>
+				</div>
+				<br>
+				<div class="left_div">
+					<span id="gu">故</span>
+				</div>
+				<br>
+				<div class="left_div">
+					<span id="shi">事</span>
+				</div>
+			</div>
+			
+			<div id="middle" class="div2">
+				<span>HELLO!</span>
+				<div class="div_ul">
+					<ul id="ul1">
+						<li><a href="jinwei.html">精卫填海</a></li>
+						<li><a href="gonggong.html">共工怒触不周山</a></li>
+						<li><a href="xingtian.html">刑天舞干戚</a></li><br><br><br><br>
+						<li><a href="shengtu.html">神荼郁垒</a></li>
+						<li><a href="houyi.html">后羿射日</a></li>
+						<li><a href="danzhu.html">丹朱化鸟</a></li><br><br><br><br>
+						<li><a href="fenghuang.html">凤凰应龙</a></li>
+						<li><a href="nvwa.html">女娲补天</a></li>
+						<li><a href="#" style="background-color: aquamarine;">点击查看更多</a></li>
+					</ul>
+				</div>
+				
+			</div>
+			<div id="right" class="div3">
+				<div class="left_div">
+					<span id="sheng2">神</span>
+				</div>
+				<br>
+				<div class="left_div">
+					<span id="hua2">话</span>
+				</div>
+				<br>
+				<div class="left_div">
+					<span id="gu2">故</span>
+				</div>
+				<br>
+				<div class="left_div">
+					<span id="shi2">事</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script  src="../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		var str = ["#000000","#2F0000","#600030","#460046","#3C3C3C","#600000","#9F0050","#D9006C","#00E3E3","#02F78E","#28FF28","#EA7500","#FFDC35","#FFF8D7","#6FB7B7","#CF9E9E","#F3F3FA","#9F4D95","#336666","#CCFF80","#EAC100","#642100","#CEFFCE","#96FED1","#00E3E3"];
+		var hanziLeft = ["#sheng","#hua","#gu","#shi"];
+		var hanziRight = ["#sheng2","#hua2","#gu2","#shi2"];
+		$(function(){
+			setInterval("changeColor()",300);
+		});
+		
+		/* 实现文字颜色动态改变 */
+		function changeColor(){
+			//随机获取一个颜色
+			var len = str.length
+			var index = Math.round(Math.random()*len+1);
+			//随机获取一个字
+			var index2 = Math.round(Math.random()*4);
+			$(hanziLeft[index2]).attr("style","color:"+str[index]);
+			$(hanziRight[index2]).attr("style","color:"+str[index]);
+		}
+		
+	</script>
+</html>

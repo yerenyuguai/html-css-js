@@ -1,0 +1,88 @@
+
+			*{
+				margin:0px;
+				padding:0px;
+			}
+			html,body{height:100%;} 
+			.divboss{
+				margin-left: 150px;
+				margin-right: 150px;
+				height:100%;
+			}
+			.div1{
+				margin: 0;
+				background-image: linear-gradient(to bottom right, burlywood, darkorange);
+				width:10%;
+				height: 100%;
+				float: left;
+				display:inline-block;
+			}
+			.div2{
+				margin-left: -4px;
+				background-color: chocolate;
+				width:74%;
+				height: 100%;
+				display: inline-block;
+				float: left;
+				
+				padding-left:40px;
+			}
+			.div2 span{
+				font-size: 80px;
+			}
+			.div3{
+				margin-left: -4px;
+				background-image: linear-gradient(to bottom right, burlywood, darkorange);
+				width:10.4%;
+				height: 100%;
+				display: inline-block;
+				float: left;
+			}
+			.left_div{
+				padding-top:45px;
+				padding-left:25px;
+				font-family: cursive;
+				font-size: 80px;
+				color:;
+			}
+			.left_div:hover{
+				transform: rotate(330deg);
+			}
+			.div_ul{
+				margin-left:40px;
+				margin-top: 200px;
+			}
+			ul{
+			  
+			}
+			
+			ul li{
+				margin-left:90px;
+				float: left;
+				list-style:none;
+			}
+			ul li a{
+				border-radius: 4px;
+				text-decoration: none;
+				background-color: firebrick;
+				display: block;
+				width:130px;
+				height:40px;	
+				line-height: 40px;          	
+				color: #fff;
+				text-align: center;
+			}
+            ul li a:hover{
+				transform:scale(1.4);
+			}
+			
+			button{
+				width:100px;
+				height:40px;
+				background-color: forestgreen;
+				border-radius: 4px;
+			}
+			.random{
+				margin-top:180px;
+				margin-left:365px;
+			}

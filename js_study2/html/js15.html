@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+        	作者：offline
+        	时间：2022-02-22
+        	描述：                
+        	   JSON        ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        	   ★★★★★★★★★★★★★★★★★★★★★★★★★
+        	   Javascript Object Nation   js对象表示法
+        	   
+        -->
+        
+       <!--
+       	作者：offline
+       	时间：2022-02-22
+       	描述：如果需要兼容ie7及以下的JSON操作，可以引入一个外部的js文件夹来处理  这里叫json2
+       -->
+       <script type="text/javascript" src="../js/json2.js">
+       	
+       </script>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//创建一个对象
+		var obj = {
+			name: "孙悟空",
+			age: 18,
+			sex: "男"
+		};
+
+		//  js的对象只有js自己可以识别，其他语言都无法识别
+
+		//所以试着把对象变为一个String类型，这个所有语言都认识
+		var obj = '{"name": "孙悟空","age":18,"sex":"男"}';
+		//变为String类型   ，这就是一个JSon
+		//JSON 实际上就是一个特殊格式的字符串，并且可以转换为任意语言中的对象
+		//JSon在开发中主要用来做数据的交互传递
+
+		//json和js对象格式一样，只不过json字符串的属性名必须加双引号，比如  "name",其他和js语法一致
+
+		//json分类    1.对象 {}            2.数组[]
+
+		var arr = '[1,2,3,"hello",true]'; //Json数组
+
+		//json允许的值  1 字符串  2数据     3 Boolean值   4 null  5 普通对象   6 数组
+		//   不能有函数
+		//下面的都可以
+		var arr1 = '{"arr":[1,2,3]}';
+		var arr = '[{"name": "孙悟空","age":18,"sex":"男"},{"name": "孙悟空","age":18,"sex":"男"}]';
+
+		//将json字符串转换为js对象    
+		//在js中，提供了一个工具类，就叫做JSON
+		//这个对象可以帮助我们将一个JSON转换为JS对象，也可以将JS对象转换为JSON
+
+		var json = '{"name": "孙悟空","age":18,"sex":"男"}';
+
+		//json ---->  js对象
+		//  JSON.parse()   需要将一个JSON字符串作为参数，会将该字符串转换为JS对象
+		var o = JSON.parse(json);
+		console.log(o.name);
+
+		var arr4 = '[1,2,3,"hello",true]';
+		var oo = JSON.parse(arr4);
+		console.log(oo[3]); //输出hello
+
+		var obj3 = {
+			name: "猪八戒",
+			age: 28,
+			sex : "雄"
+		};
+
+		//js对象 ----->  json
+		//   JSON.stringify()  可以将一个js对象转为JSON字符串，需要一个js对象作为参数
+		var j=JSON.stringify(obj3);
+		console.log(j);
+		
+		
+		//JSON这个对象在IE7及以下的浏览器中不支持，所以在这些浏览器中会报错
+		
+		
+		/*
+		 * 
+		 *    eval()  这个函数可以执行一段字符串形式的js代码,并将结果返回
+		 * 
+		 * 如果执行的字符串含有{}  大括号，他会将大括号当成一个代码块，所以遇到:解析错误
+		 * 如果不希望当成代码块解析，则需要在字符串前后各加一个()，变为下面的json1
+		 */
+		var str2="alert('hello')";
+		eval(str2);//弹出提示框  输出hello
+		
+		var json = '{"name": "拐子","age":20,"sex":"男"}';
+		//  eval(json);     会报错，因为遇到了大括号
+		var json1 = '({"name": "拐子","age":20,"sex":"男"})';
+		var e=eval(json1);///    或者 eval("("+json1+")")
+		console.log(e.name);
+		
+		//eval()很强大，可以直接执行一个字符串的js代码
+		//但实际开发中不推荐使用，  首先性能低，其次存在安全隐含，可能有黑客恶意给你输入恶意代码
+	</script>
+
+</html>

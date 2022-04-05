@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 基本数据类型 
+			 *   String Number Boolean Null Undefined
+			 * 引用数据类型   Object
+			 * 
+			 * 在js中为我们提供了三个包装类，通过这三个包装类可以将基本数据类型的数据转换为对象
+			 * 1 String() 可以将基本数据类型的字符串转换为String对象
+			 * 2 Number() 可以将基本数据类型的数值转换为number对象
+			 * 3 Boolean() 可以将基本数据类型的布尔值转换为Boolean对象
+			 * //这个包装类是让浏览器底层自己用的，程序员不需要进行操纵
+			 */
+			//创建一个Number类型的对象
+			var num=new Number(3);
+			console.log(typeof num);//显示为number对象
+			//向number中添加一个属性
+			num.name="hello";
+			console.log(num.name);
+			var num2=new Number(3);
+			console.log(num==num2);//false,因为是两个Number对象，比较的是他们的内存地址
+			//但是上面讲的基本数据类型的对象的使用，实际开发时很少用到
+			//再做一些比较时会带来一些不可预料的结果
+			//方法和属性只能添加给对象，不能添加给基本数据类型
+			//当我们对一些基本数据类型的值去调用属性和方法时
+			//浏览器会临时使用包装类将其转化为对象，然后再调用对象的属性和方法
+			//调用完之后，再将其临时转换为基本数据类型
+			var  s=123;
+			s=s.toString();//s.toString()这里的s是转换的number对象，用完就销毁
+			s.hello="你好";//添加属性，需要临时转化成对象，添加完属性就销毁了
+			console.log(s.hello);//undefined
+			//★★★★★★★★
+			//s.hello读取基本数据类型的属性，浏览器将其临时转化为对象，
+			//这个和s.hello="你好";创建的对象不是同一个，因为上一个转换完就销毁了
+			//这个就是又新创建的对象，二者没有同一个对象
+			//所以console.log(s.hello);读取不出来
+			/*
+			 *   
+			 * 字符串   
+			 *   字符串的大部分方法都不会对原字符串产生影响
+			 */
+			//创建一个字符串
+			var str="山高狐狸野 ,八重是我姐 ";
+			/*
+			 * 在底层字符串是以字符数组的形式进行保存的
+			 * ["山","高","狐","狸","野"," ",",","八","重","是","我","姐"," "]
+			 */
+			console.log(str);
+			console.log(str.length);//13 五个字空格逗号五个字空格
+			
+			//charAt() 返回指定位置的字符
+			console.log(str.charAt(1));//输出索引为1的字符
+			console.log(str[1]);//和上面等价
+			
+			//charCodeAt() 返回指定位置的字符的Unicode编码
+			console.log(str.charCodeAt(1));//输出索引为1的字符对应的Unicode编码
+			
+			//formCharCode()  根据字符编码获取到字符
+			//这个需要用构造函数String来调用★★★★★★
+			console.log(String.fromCharCode(39640));//对应上面输出高
+			
+			//concat()连接字符串，数组也有
+			console.log(str.concat("嘿嘿，我的神子~"));
+			console.log(str);//不会影响原来的数组
+			
+			//indexOf()  该方法会检索一个字符串中是否含有指定内容
+			console.log(str.indexOf("八"));	//有则返回第一次出现索引位置
+			//indexOf("查找的字符",x);  x表示从哪一个索引开始查找
+			console.log(str.indexOf("九"));//无则返回-1
+			
+			//lastIndexOf()  从后向前搜索字符串，跟上面的方向相反,第一个出现的位置是从后开始看
+			console.log(str.lastIndexOf("八"));	//有则返回第一次出现索引位置
+			//lastIndexOf("查找的字符",x);  x表示从哪一个索引开始查找
+			console.log(str.lastIndexOf("九"));//无则返回-1
+			
+			//slice()  可以从字符串内截取指定的内容 也是不会影响原字符串
+			//slice(start,end)和python一样，start取，end不取，左闭右开，值为索引
+			console.log(str.slice(7,12));
+			
+			//substring() 也是可以截取字符串，和slice类似
+			//substring(start,end)和python一样，start取，end不取，左闭右开，值为索引
+			//不同的是slice可以传负数的索引,而这个不能接受负值，接收的负值默认为0
+			//而且substring会自动调整参数的位置
+			console.log(str.substring(5,0));
+			
+			//substr()  也是截取字符串
+			//substr(start,count);  start开始索引,count截取数量  count为负数，截取为""
+			console.log(str.substr(0,2));
+			
+			//split()  将一个字符串拆分成一个数组
+			//参数  需要一个字符串作为参数，将会根据该字符串去拆分数组
+			str="abc,bcd,cde,def";
+			result=str.split(",");//以,来进行拆分
+			console.log("split()后："+result);
+			console.log(result[0]);//abc
+			console.log(result.length);//长度为4，被,拆分为四个
+			console.log(Array.isArray(result));//true说明是变为了数组
+			
+			//toUpperCase()  将字符串都变为大写
+			console.log(str.toUpperCase());
+			str="ABCDEFG";
+			//toLowerCase()  将字符串变为小写
+			console.log(str.toLowerCase());
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

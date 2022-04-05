@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box01 {
+				width: 200px;
+				height: 200px;
+				background-color: #FF0000;
+				padding: 10px;
+				border: 10px solid yellow;
+			}
+			
+			#box02 {
+				width: 100px;
+				height: 100px;
+				overflow: auto;
+				/*出现滚动条的关键*/
+				background-color: #F5DEB3;
+			}
+			
+			#box03 {
+				width: 500px;
+				height: 500px;
+				background-color: #B8860B;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var box01 = document.getElementById("box01");
+				var box02 = document.getElementById("box02");
+				var btn001 = document.getElementById("btn001");
+				btn001.onclick = function() {
+					/*
+					 * 
+					 * clientWidth  可见宽度
+					 * clientWidth  可见高度
+					 * 这两个属性可以获取元素的可见高度和宽度，包括内容区和内边距，不包括边距
+					 * 这些属性都是只读的，不能进行修改，修改用style
+					 * 
+					 * 注意这里输出的属性是不带px的，返回都是一个数字，可以直接进行运算
+					 * 高度的话，会算上上下的内边距， 分别为10，一共200+20,不算边距
+					 */
+					alert(box01.clientHeight); //220，算了上下的内边距
+					/*
+					 * 
+					 * offsetWidth   offsetHeight
+					 * 获取元素整个的宽度           高度
+					 */
+					alert(box01.offsetHeight); //240，height+2padding+2border
+					/*
+					 * offsetParent
+					 *   获取当前元素的定位父元素
+					 * 他会获取到距离当前元素最近的且开启定位的祖先元素
+					 * ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+					 *  开启定位   只要不是position:static，这是默认的，只要没有手动更改都是默认
+					 */
+					var op = box01.offsetParent; //box01的父元素是body
+					alert(op.id);
+					/*
+					 * offsetLeft  当前元素相对于其定位父元素offsetParent的水平偏移量
+					 * offsetTop  当前元素相对于其定位父元素的垂直偏移量
+					 */
+					//因为没有开启定位，所以都默认为static，所以父元素是body
+					alert(box01.offsetLeft); //8  就是黄色边框和body的距离边框
+
+					//  scrollHeight  和下面的方法都可以获取元素整个滚动区域的属性
+					alert("box02滚动高度为" + box02.scrollHeight); //500,受到子元素box03的影响
+					//  scrollWidth
+					alert("box02滚动宽度为" + box02.scrollWidth); //500,受到子元素box03的影响
+					// scrollLeft 返回元素左边缘与视图之间的距离      scrollTop ...上边缘...
+					alert("拽一下滚动条")
+					alert("距离左边缘是" + box02.scrollLeft + "\n距离上边缘是" + box02.scrollTop);
+
+					//当scrollHeight-scrollTop==clientheight  说明垂直滚动条到底
+					//当scrollWidth-scrollLeft==clientwidth   说明水平滚动条到底
+					alert(box02.scrollHeight - box02.scrollTop);
+					//这个表示当前滚动的高度-距离上边缘的高度
+
+				} //所以一些游戏了之类的必须让你读完所有内容，即为滚动条划到底部
+				var btn002 = document.getElementById("btn002");
+				btn002.onclick = function() {
+					if(box02.scrollHeight - box02.scrollTop == box02.clientHeight) {
+						alert("划到底部了") }
+					else { alert("别动我") }
+					
+					//js22对以上这个功能进行完善
+				}
+			}
+		</script>
+	</head>
+
+	<body id="body1">
+		<br>
+		<div id="box01"></div>
+		<button id="btn001">点我</button>
+		<br>
+		<div id="box02">
+			<div id="box03"></div>
+		</div>
+		<button id="btn002">垂直滚动条划到底部才能点我</button>
+	</body>
+
+</html>

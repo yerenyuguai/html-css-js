@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img {
+				width: 200px;
+				height: 150px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img id="img1" src="../img/1.png">
+		<button id="Btn5">点击我开始轮播</button>
+		<button id="Btn6">暂停</button>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			/*
+			 * 
+			 *   使得图片可以实现自动切换
+			 */
+			//获取图片的id
+			var img1 = document.getElementById("img1");
+			//创建一个数组 保存图片的路径
+			var imgArr = ["../img/1.png", "../img/2.png", "../img/3.png", "../img/4.jpg", "../img/5.jpg"];
+			//创建一个变量作为索引
+			var index = 0;
+			//获取按钮
+			var btn = document.getElementById("Btn5");
+			var btn1 = document.getElementById("Btn6");
+			
+			//定义time参数，如果定义在里面的话  是局部变量
+			var time;//之后在下面链接计时器
+			
+			btn.onclick = function() {
+				
+				//最下面有讲解
+				//所以我们需要在开启一个计时器之前，我们将前一个计时器进行关闭
+				//这样保证连续点击，前一个总是被关闭掉
+			    clearInterval(time);
+				
+				
+				//开启定时器，来自动切换图片
+				time=window.setInterval(function() {
+
+					img1.src = imgArr[index];
+					index++;
+
+					if(index >= imgArr.length) {
+						index = 0;
+					}
+					//这个判断同样可以这样写
+
+					//  index=index%imgArr.length   
+					//  1%5=1  所以到最后一个  5%5=0  和index=0一样
+					
+					//希望暂停在某一个图
+				}, 1000);
+			}
+			btn1.onclick=function(){
+				//点击按钮以后，停止图片更换关闭计时器
+				//clearInterval()可以接受任何参数，
+				//如果参数是一个有效的计时器的标识，则停止对应的计时器
+				//如果参数不是的话，则什么也不做
+				//  即clearInterval(undefined)之类的就什么也不做
+				clearInterval(time);
+			}
+			
+			
+			//有一个问题    
+			//当我们每点击一次按钮，就会开启一次计时器，如果点击十次，就开启十个，定的事件也变为原来的1/10
+			//这时候在停止的话，因为  上面的time是点击按钮一次赋值一次，而我们点了10次，那就赋值了10次
+			//time就变成最新赋值的，所以只会停下来最新赋值的计时器
+			//所以点击多次开启多个计时器，导致图片切换越来越快，并且我们只能关闭最后一次开启的计时器
+			
+			//所以我们需要在开启一个计时器之前，我们将前一个计时器进行关闭
+			//clearInterval(time);
+		}
+	</script>
+
+</html>

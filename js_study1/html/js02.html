@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 运算符也叫做操作符，通过运算符可以对一个或多个值进行运算
+			 * //比如typeof就是一个运算符
+			 * 
+			 * 算术运算符  + - * / % 
+			 * 特殊情况：任何数和NaN做运算都等于NaN
+			 * 任何值和字符串   相加(只有加法)  都会变成字符串拼接(也可以让var c=123+"";这样c变为String类型)
+			 * 任何值做- * /运算时，都会自动变为number类型，可以利用这一特性做隐藏类型转化
+			 * 比如 -0，*1，/1来将其转为number类型
+			 * 
+			 * % 取模运算（即为取余）
+			 * 
+			 */
+			//比如typeof就是一个运算符
+			var a=123;
+			var result=typeof a;
+			console.log(typeof a);
+			result=a+1;//不能直接  a+1,这样只是运算，没有返回值，a的原值没改变
+			console.log(result);
+			console.log(a+1);//a的原值没改变,还是123
+			console.log(result+1);//这样就不需要返回值，a的值直接进行变化
+			result="123"+"456"
+			console.log(result);//字符串相加是出现字符串拼接
+			result=1+"456"
+			console.log(result);//任何值(包括true之类的)和字符串相加都会变成字符串拼接
+			//算术运算从左到右依次取两个值进行计算，注意参与运算的元素的类型
+			result=1+2+"456";
+			console.log(result);//先1+2得到三，变为字符串拼接
+			result="1"+2+3;
+			console.log(result);//拼接1和2，拼接12和3
+			result="100"-1;
+			console.log(result);//除了加法，其余跟有字符串运算的，字符串都转为number类型
+			result=2*"20";
+			console.log("result="+result);//除了加法，其余跟有字符串运算的，字符串都转为number类型
+			result=2*undefined;//undefined换为number类型为NaN，因此2*NaN=NaN
+			console.log("result="+result);
+			result=9%4//
+			console.log("result="+result);
+		</script>
+		<script type="text/javascript">
+			/*
+			 *一元运算符    +正号   -负号
+			 * 但对于非number值，比如true·，先换为对应number值，1，然后比如做-运算，输出变为-1
+			 * 自增 ++ 和自减--
+			 * 语法和其他差不多，这里不赘述，即a++取旧值，++a取新值
+			 * */
+			var a=-123;
+			a=+a;//正号不会对数值产生任何影响，如题即使为负数，也无法变正
+			console.log("a="+a);
+			var a=-123;
+			a=-a;//负号讲该数变为相反数
+			console.log("a="+a);
+		</script>
+		<script type="text/javascript">
+			/*逻辑运算符
+			 * ！非 
+			 * 如果是非Boolean类型的，就需要将值转换为Boolean类型，所以可以利用这个特性
+			 * 将非Boolean类型的值换为布尔类型    var a=10；  a=！！a;  这时a就为布尔类型
+			 * &&与       
+			 * true&&true为true，相同为true
+			 * 如果第一个值为false，就不会继续看，输出false
+			 * ||或 只要有一个为ture，均为true，
+			 * 如果第一个值为true·，就不会继续看，输出true
+			 * 和其他语言一样，不再赘述
+			 * 
+			 * 
+			 * &&和||对于非Boolean值进行运算时，会先将其转换为boolean类型，再运算，在返回原值
+			 * 对&&而言
+			 * 如果第一个值为true，则必然返回后面的值
+			 * 如果第一个值为false，则必然返回第一个值
+			 * 对||而言
+			 * 如果第一个值为true，则必然返回第一个值
+			 * 如果第一个值为false，则必然返回后面的值
+			 * */
+			var a=true;
+			a=!a;//进行非运算，如果是a=!!a就会变回true；
+			console.log("a="+a);
+			true&&alert("早安！");//若第一个为false，则不会输出
+			/*
+			 * 赋值运算符  可以将符号右侧的值赋值给符号左侧的变量
+			 * =  即 var a=123；
+			 * +=   a+=10； a在a原值的基础上加10
+			 * -=   a-=10； a在a原值的基础上减10
+			 * *=   a*=10； a在a原值的基础上乘10
+			 * /=   a/=10； a在a原值的基础上除10
+			 * %=   a%=10； a在a原值的基础上取模为10
+			 * 
+			 */
+			/*
+			 * 关系运算符   可以比较两个值之间的关系
+			 * 如果关系成立，返回true，不成立返回false
+			 *  >大于  <小于     ==等于  !=不等于
+			 * 
+			 *对于非数值进行时候，会将其转化为数字然后再比较
+			 * 任何值和NaN作任何比较都是false
+			 * 当两个字符串进行比较时，比较的是字符串的字符编码，而且是一位位比较，(比较中文无意义)
+			 * 如果两位一样，则比较下一位，可以通过这个进行英文的排序如abc和bcd
+			 * 比如   console.log("abc">"a");
+			 * "abc"中的a与"a"一样，则下一位"abc"中的b和a比较
+			 */
+			console.log(1>"0");
+			/*
+			 * 在字符串中使用转义字符输入Unicode编码
+			 *   \u四位编码
+			 */
+			console.log("\u0040")//0040对应的是@，部分输出会出问题，软件的问题
+			console.log(undefined==null);//Undefined衍生自null，所以为true
+			//额外    NaN不和任何值相等，包括它本身
+			console.log(NaN==NaN);//false
+			//可以通过isNaN（）函数判断是否为NaN
+			var b=NaN;
+			console.log(isNaN(b));//判断为非零，返回true
+			/*
+			 * ！=  不相等返回true，相等返回false
+			 * 会对不同的类型进行转化，然后判断
+			 */
+			console.log(5!=10);//true
+			var a=(1!="1");//转化为同类型后，1==1,返回false
+			console.log("a的值"+a);
+			/*
+			 *    ===  全等  和==类似，但是不会作类型转化，如果类型不同，直接返回false
+			 *    ！==  不全等，和!=类似，但是不会作类型转化，如果类型不同，直接返回true·
+			 * 
+			 */
+			
+			/*
+			 * 条件运算符  ，又叫做三元运算符
+			 * 语法     
+			 *      条件表达式？语句1:语句2；
+			 * 判断条件表达式，为true，执行语句1，为false执行表达式2
+			 * 如果条件表达式求值结果为一个非布尔值，会将其转化为布尔值然后在运算
+			 */
+			var a=1,b=3,c=2;
+			console.log(a>b?"对":"错误");
+			max=a>b?(a>c?a:c):(b>c?b:c);//其他人阅读性差
+			console.log("max="+max);
+			/*
+			 * 符号的优先级
+			 *（）高于++，--高于 +-高于/*%高于<,<=,>=,>高于&&高于||高于=，+=，-=
+			 */
+			/*
+			 js中可以用{}来进行分组，同一个{}里的称为一组语句，要么都执行，要么都不执行
+			 * 一个{}的语句称之为代码块，代码块的内容括号外仍然起作用，{}只起到分组左右
+			 * */
+		</script>
+	</head>
+	<body>
+		<!--
+        	作者：offline
+        	时间：2022-02-08
+        	描述：在网页中使用Unicode编码
+        	&#编码;     这里的编码是十进制
+        	下面的9760（十进制）对应的是一个骷髅头
+        -->
+        <h1 style="font-size: 200px;">&#9760</h1>
+	</body>
+</html>

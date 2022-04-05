@@ -1,0 +1,35 @@
+.mountain_top{width: 90%;height: 12.5rem;margin: 0 auto;padding: 1.25rem;background-image: url(../img/mountain_1.jpg);background-size: 100%;}
+.mountain_top h1{color: darkgoldenrod;font-size: 80px;font-family: "楷体";}
+.mountain_top p{text-indent: 2em;font-family: "新宋体";font-weight: bolder;font-size: 20px;}
+.mountain_guide{height: 2.5rem;width: 90%;text-align: center;clear: both;margin: 0 auto;padding: 0 auto;}
+.mountain_guide li{list-style-type: none;float: left;width: 20%;margin:0 1.25rem;border: solid black 0.125rem;padding: 10px 0;}
+.mountain_guide li a{text-decoration: none;color: darkseagreen;}
+.mountain_guide li a:hover{text-decoration: none;color: seagreen;font-weight: bolder;}
+.mountain_down{width: 90%;height: 950px;margin: 0 auto;background-color: #D4DADA;padding: 0 1.25rem;text-align: center;}
+.north_mountain{
+	width: 230px;height: 230px;margin:0 auto;display: block;transform: rotate(45deg);border-radius: 45px;
+	position:relative;top:150px;background-image: url(../img/u=1850397013,3318437332&fm=26&fmt=auto.webp);background-size: cover;
+	}
+.south_mountain{
+	width: 230px;height: 230px;margin:0 auto;display:block;transform: rotate(45deg);border-radius: 45px;
+	position:relative;top:150px;background-image: url(../img/u=3227141375,3297713626&fm=26&fmt=auto.webp);
+	}
+.east_mountain{
+	width: 230px;height: 230px;margin:0 auto;display:inline-block;transform: rotate(45deg);border-radius: 45px;
+	position:relative;top:150px;background-image: url(../img/u=3231943653,1134726554&fm=26&fmt=auto.webp);
+	}
+.west_mountain{
+	width: 230px;height: 230px;margin:0 auto;display:inline-block;transform: rotate(45deg);border-radius: 45px;
+	position:relative;top:150px;background-image: url(../img/u=4099514776,1331468937&fm=26&fmt=auto.webp);
+	}
+.middle_mountain{
+	width: 230px;height: 230px;margin:0 auto;display: inline-block;transform: rotate(45deg);border-radius: 45px;
+	position:relative;top:150px;background-image: url(../img/u=901713520,3872982671&fm=26&fmt=auto.webp);
+	}
+.mountain_text{transform: rotate(-45deg);position: relative;top:100px;font-size: 30px;font-weight: bolder;font-family: "仿宋";}
+.mountain_text p{display: none;}
+.mountain_text:hover p{display: block;font-family: 楷体;font-weight: bolder;color: ghostwhite;font-size: 16px;}
+.mountain_back{width: 90%;height: 50px;margin: 0 auto;background-color: #D4DADA;padding: 0 1.25rem;text-align:right;}
+.mountain_back li{list-style-type: none;float: right;width: 5%;margin:0 10px;padding: 10px 0;}
+.mountain_back li a{text-decoration: none;color: darkseagreen;}
+.mountain_back li a:hover{text-decoration: none;color: seagreen;font-weight: bolder;}

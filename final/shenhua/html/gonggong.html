@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>共工怒触不周山</title>
+		<link rel="stylesheet" href="../css/shenghua.css">
+		<style>
+			.text{
+				margin-left:100px;
+				width:70%;
+			}
+			img{
+				width:100%;
+				height:380px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="divboss">
+				<div id="left" class="div1">
+					<div class="left_div">
+						<span id="sheng" >神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi">事</span>
+					</div>
+				</div>
+				
+				<div id="middle" class="div2">
+					<span style="font-size: 40px;"><i>共工怒触不周山~</i></span>
+					<div class="text">
+					    <p>&nbsp;&nbsp;&nbsp;&nbsp;共工怒触不周山的传说故事. 共工怒触不周山是一个著名的上古神话传说。. 又名共工触山，且与女娲补天、后羿射日、嫦娥奔月并称中国古代著名的四大神话。. 共工，又称共工氏，是中国古代神话中的水神，掌控洪水。. 在中国先秦古书《列子·汤问》中记载，传说共工素来与颛顼不合，发生惊天动地的大战，最后以共工失败而愤怒地撞上不周山而告终。. 这一传说反映了远古部族间的斗争，同时涉及到古代天文学上的“盖天说”。. 盘古开天辟地女娲造人之后，水神共工一向与火神祝融不合，他向火神发动进攻。. 担当先锋的大将相柳、浮游，猛扑火神祝融氏居住的光明宫，把光明宫四周长年不熄的神火弄灭了。. 大地顿时一片漆黑。</p>
+						<br><br>
+						<img src="../img/gongong.jpg">
+					</div>
+					
+				</div>
+				<div id="right" class="div3">
+					<div class="left_div">
+						<span id="sheng2">神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua2">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu2">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi2">事</span>
+					</div>
+				</div>
+			</div>
+		</body>
+		<script  src="../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+			var str = ["#000000","#2F0000","#600030","#460046","#3C3C3C","#600000","#9F0050","#D9006C","#00E3E3","#02F78E","#28FF28","#EA7500","#FFDC35","#FFF8D7","#6FB7B7","#CF9E9E","#F3F3FA","#9F4D95","#336666","#CCFF80","#EAC100","#642100","#CEFFCE","#96FED1","#00E3E3"];
+			var hanziLeft = ["#sheng","#hua","#gu","#shi"];
+			var hanziRight = ["#sheng2","#hua2","#gu2","#shi2"];
+			$(function(){
+				setInterval("changeColor()",300);
+			});
+			
+			/* 实现文字颜色动态改变 */
+			function changeColor(){
+				//随机获取一个颜色
+				var len = str.length
+				var index = Math.round(Math.random()*len+1);
+				//随机获取一个字
+				var index2 = Math.round(Math.random()*4);
+				$(hanziLeft[index2]).attr("style","color:"+str[index]);
+				$(hanziRight[index2]).attr("style","color:"+str[index]);
+			}
+			
+		</script>
+	</body>
+</html>

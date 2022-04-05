@@ -1,0 +1,41 @@
+#left{
+	background: greenyellow;
+	width: 50%;
+	height: 400px;
+	float: left;
+}
+#right{
+	background: yellow;
+	width: 49%;
+	height: 900px;
+	margin-right: 5px;
+	float: left;
+}
+#allbtn{
+	margin-top: 25px;
+	margin-left: 25px;
+}
+#chengshi {
+	width: 50%;
+	background: grey;
+	position: absolute;
+}
+
+#chengshi ul{
+	list-style-type: none;
+	padding: 0;
+	text-align: center;
+	color: blue;
+
+}
+#chengshi ul li{
+	display: inline;
+	margin: auto 8%;	
+	background-color: yellow;
+}
+.inner{
+	margin-top: 20px;
+	width: 49%;
+	height: 500px;
+	background: wheat;
+}

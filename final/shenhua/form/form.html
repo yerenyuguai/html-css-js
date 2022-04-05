@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>大学生暑假社会调查问卷</title>
+		<style>
+			*{
+				margin:0px;
+				padding:0px;
+			}
+			html body{
+				height:100%;
+			}
+			.div1{
+				width: 65%;
+				margin-left: 250px;
+				padding-top:40px;
+				height: 100%;
+				background-image: linear-gradient(to bottom right,#B8860B,yellow);
+			}
+			.tab1{
+				margin-left: 90px;
+				border: 7px solid white;
+				width: 80%;
+				height: 90%;
+			}
+			.td1{
+				border-bottom: 1px solid white;
+				height: 80px;
+				text-align: center;
+			}
+			.td2{
+				border-bottom: 1px solid white;
+				height: 80px;
+				color: royalblue;
+				font-weight: bold;
+			}
+			.td3{
+				border-bottom: 1px solid white;
+				height: 50px;
+			}
+			
+			.td5{
+				border-bottom: 1px solid white;
+				height: 50px;
+			}
+			.td6{
+				border-bottom: 1px solid white;
+				height: 100px;
+			}
+		
+			.td7{
+				padding-top:20px;
+				padding-bottom:20px;
+				border-bottom: 1px solid white;
+				height: 100px;
+			}
+			
+			.ziti{
+				padding:5px;
+				font-family: cursive;
+				font-size: 15px;
+				border-radius: 4;
+			}
+			.btn{
+				margin-left:380px;
+				width: 100px;
+				height:40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			<form action="#" method="post" enctype="multipart/form-data">
+				<table class="tab1">
+					<tr>
+						<td class="td1"><h2>关于网站的意见调查表</h2></td>
+					</tr>
+					<tr>
+						<td class="td2"><pre>    亲爱的用户，首先感谢您对本网站的使用，我们的网站主要是关于山海经知识的一些介绍，其中包括神话、民俗、异兽及原文内容。
+为了更好地了解山海经，贴合各位的实际需求，请将您的宝贵意见和建议留给我们。同时留下您的个人基本资料，感谢您的支持与配合！
+</pre></td>
+
+
+					</tr>
+					<tr>
+						<td class="td3"><span>1. 您的姓名：</span><input type="text" name="sex" placeholder="请输入您的姓名"></td>
+					</tr>
+					<tr>
+						<td class="td3"><span>2. 您的性别：<input type="radio" name="sex" value="male">男<input type="radio" name="sex" value="female">女</td>
+					</tr>
+					<tr>
+						<td class="td3"><span>3. 您的联系方式：</span><input type="text" name="tel" placeholder="请输入您的联系方式"></td>
+					</tr>
+					<tr>
+						<td class="td5"><span>3. 您所在的城市：</span>
+							<select style="width: 160px;">
+								<option>北京</option>
+								<option>上海</option>
+								<option>广州</option>
+								<option>深圳</option>
+							</select>
+					    </td>
+					</tr> 
+					<tr>
+						<td class="td7"><span>4. 登录相关网站之后您最先关注的是：</span><br>
+						   <input type="checkbox" name="point" value="1">图片<br>
+						   <input type="checkbox" name="point" value="2">灵感集<br>
+						   <input type="checkbox" name="point" value="3">设计师板块<br>
+						   <input type="checkbox" name="point" value="4">网页背景<br>
+						   <input type="checkbox" name="point" value="5">网站色彩板块<br>
+						   <input type="checkbox" name="point" value="6">网站内容<br>
+						   <input type="checkbox" name="point" value="7">其他<br>
+						</td>
+					</tr>
+					<tr>
+						<td class="td7"><span>5. 您是如何评价一个网站的好坏：</span><br>
+						   <input type="checkbox" name="point" value="1">外观<br>
+						   <input type="checkbox" name="point" value="2">功能<br>
+						   <input type="checkbox" name="point" value="3">实用程度<br>
+						   <input type="checkbox" name="point" value="4">售后服务<br>
+						   <input type="checkbox" name="point" value="7">其他<br>
+						</td>
+					</tr>
+					<tr>
+						<td class="td6"><span>6. 您认为本网站的内容丰富吗？</span><br><br>
+						   <input type="radio" name="content" value="yes">很丰富
+						   <input type="radio" name="content" value="a_little">比较丰富
+						   <input type="radio" name="content" value="bad">不丰富
+						</td>
+					</tr>
+					<tr>
+						<td class="td6"><span>7. 您认为网站上的广告对您有益吗：</span><br><br>
+						   <input type="radio" name="guangGao" value="yes">有
+						   <input type="radio" name="guangGao" value="no">没有
+						   <input type="radio" name="guangGao" value="no_case">对我没有太大影响
+						</td>
+					</tr>
+					<tr>
+						<td class="td6"><span>8. 您认为网上还需要什么地方需要改进的：</span><br>
+						<textarea cols="50px" rows="3" placeholder="请留下您宝贵的意见~~" class="ziti"></textarea></td>
+					</tr>
+					
+					<tr>
+						<td class="td6"><input type="button" class="btn" value="提交" id="btn"></td>		
+					</tr>
+					
+				</table>
+				<br><br>
+			</form>
+		</div>
+	</body>
+	<script src="../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#btn").click(function(){
+				alert("提交成功，感谢您的参与~~");
+				window.location.href="../../index.html";
+			});
+		});
+	</script>
+</html>

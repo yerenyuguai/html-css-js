@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var b = prompt("请输入成绩"); //输入的是字符号串，要转化为number
+			b = Number(b);
+			switch(parseInt(b / 10)) { //parseint是取整数
+				case 10:
+				case 9:
+				case 8:
+				case 7:
+				case 6:
+					alert("成绩合格");
+					break;
+				case 5:
+				case 4:
+				case 3:
+				case 2:
+				case 1:
+					alert("成绩不合格");
+					break;
+				default:
+					alert("非法输入");
+					break;
+			}
+			var b = prompt("请输入成绩2.0");
+			switch(true) {
+				case b >= 60:
+					alert("合格");
+					break;
+				default:
+					alert("成绩不合格");
+					break;
+			}
+			//终止计时器
+			//console.time("计时器的名字")
+			//不过计时器在外部的浏览器运行下点击检查能看到，这里只是告诉这个方法
+			//Math.sqrt();用来求平方根
+			console.time("test");
+			 for(var i = 2; i <= 100; i++) {
+				var flag = true;
+				for(var j= 2; j <= Math.sqrt(i); j++) {
+					//j <= Math.sqrt(i);这样更优化了，比j<i更节约时间
+					if(i % j == 0) {
+						//说明num能被i整除，不是质数
+						flag = false;
+						//一旦进入循环说明，i肯定不是质数，之后的循环就没意义，可以直接break退出
+						break;
+					}
+				}
+				if(flag){console.log(i);}//如果i是质数，打印i的值
+}
+			 console.timeEnd("test");
+			/* 可以为循环语句创建一个label，来标识当前的循环
+			 *    label:循环语句  （label也是随便起）
+			 * 使用break语句时，可以在breal后跟着一个label，这样可以指定break退出指定的循环
+			 * 而不是当前循环
+			 * 
+			 * ★★★★★★★★★★★★★★★★★★
+			 */
+
+			
+			/*outer:
+				for(var i = 0; i < 5; i++) {
+					console.log("外层循环" + i);
+					for(var j = 0; j < 5; j++) {
+						break outer;
+						console.log("内存循环" + j);
+					}
+				}*/
+				//break是退出循环，continue是结束本次循环
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>

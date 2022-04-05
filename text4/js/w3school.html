@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!--
+        	作者：offline
+        	时间：2022-02-05
+        	描述：与 display: inline 相比，主要区别在于 display: inline-block 允许在元素上设置宽度和高度。
+        	同样，如果设置了 display: inline-block，将保留上下外边距/内边距，而 display: inline 则不会。
+        	与 display: block 相比，主要区别在于 display：inline-block 在元素之后不添加换行符，
+        	因此该元素可以位于其他元素旁边。
+        -->
+		<meta charset="UTF-8">
+		<title>W3cshool</title>
+		<style type="text/css">
+			body {
+				height: 800px;
+				margin: 0 auto;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.inline_div {
+				display: inline-block;
+			}
+			#warp {
+				width: 100%;
+				height: 650px;
+				margin: 0;
+				padding: 0;
+			}
+			
+			#div1 {
+				background-color: gainsboro;
+				width: 20%;
+				height: 650px;
+				float: left;
+			}
+			
+			#div2 {
+				background-color: azure;
+				width: 60%;
+				height: 650px;
+				float: left;
+				border-right: 2px;
+			}
+			
+			#div3 {
+				background-color: gainsboro;
+				width: 20%;
+				height: 650px;
+				float: right;
+			}
+			
+			p {
+				font-family: "楷体";
+				font-size: 20px;
+				text-indent: 2em;
+			}
+			
+			#div4 {
+				width: 100%;
+				text-align: center;
+				background-color: aquamarine;
+				margin: 0;
+				padding: 0;
+			}
+			#div_Guide{
+				width: 100%;
+				text-align: center;
+				background-color: aquamarine;
+				margin: 0;
+				padding: 0;
+			}
+			#div_Guide li{
+				width: 175px;
+				margin: 0 auto;
+				display: inline-block;
+			}
+			ul {
+				list-style-type: none;
+			}
+			
+			li {
+				font-family: "楷体";
+				font-size: 20px;
+				text-indent: 2em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div_Guide">
+			<ul>
+				<li>
+					<a href="#">HTML /CSS</a>
+				</li>
+				<li>
+					<a href="#">JavaScript</a>
+				</li>
+				<li>
+					<a href="#">Server Side</a>
+				</li>
+				<li>
+					<a href="#">ASP.NET</a>
+				</li>
+				<li>
+					<a href="#">XML</a>
+				</li>
+				<li>
+					<a href="#">Web Services</a>
+				</li>
+				<li>
+					<a href="#">Web</a>
+				</li>
+			</ul>
+		</div>
+		<div id=warp>
+			<div id=div1 class="inline_div">
+				<ul>
+					<li>
+						<a href="#">HTML</a>
+					</li>
+					<li>
+						<a href="#">XHTML</a>
+					</li>
+					<li>
+						<a href="#">HTML</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">CSS</a>
+					</li>
+					<li>
+						<a href="#">CSS3</a>
+					</li>
+					<li>
+						<a href="#">TCP/IP</a>
+					</li>
+				</ul>
+			</div>
+			<div id=div2 class="inline_div">
+				<p>
+					HTML 系列教程 从左侧的菜单选择你需要的教程！
+					<hr color="aqua"> HTML <br> HTML 指超文本标签语言。<br> HTML 是通向 WEB 技术世界的钥匙。<br> 在 W3School 的 HTML 教程中，您将学习如何使用 HTML 来创建站点。<br> HTML 非常容易学习！你会喜欢它的！现在开始学习 HTML ！<br>
+					<hr color="aqua"> HTML 5 <br> HTML 5 是下一代的 HTML。 <br> HTML5 仍处于完善之中。然而，大部分现代浏览器已经具备了某些 HTML5 支持。 <br> 在 W3School 的 HTML 5 教程中，您将了解 HTML5 中的新特性。<br> 现在就开始学习 HTML 5 ！<br>
+				</p>
+			</div>
+			<div id=div3 class="inline_div">
+				<h4 align="left">参考手册</h4>
+				<ul>
+					<li>
+						<a href="#">HTML/HTML5</a>
+					</li>
+					<li>
+						<a href="#">标签</a>
+					</li>
+					<li>
+						<a href="#">CSS </a>
+					</li>
+					<li>
+						<a href="#">1,2,3</a>
+					</li>
+					<li>
+						<a href="#">HTML颜色</a>
+					</li>
+					<li>
+						<a href="#">HTML ASCII</a>
+					</li>
+					<li>
+						<a href="#">HTML Latin-1</a>
+					</li>
+					<li>
+						<a href="#">HTML 符号</a>
+					</li>
+				</ul>
+			</div>
+			<div id="div4">
+				<p>当使用本站时,代表您已接受了本站的
+					<a href="#">使用条款</a>和<a href="#">隐私条款</a>。
+					版权所有,保留一切权利。
+					<br>
+					赞助商:软件B191邵昱赫   201907044129</p>
+			</div>
+		</div>
+	</body>
+
+</html>

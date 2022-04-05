@@ -1,0 +1,58 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#div_1{
+	margin-left: 250px;
+	width: 70%;
+	height: 100px;
+	background: #ADFF2F;
+}
+#div_2{
+	margin-left: 250px;
+	width: 70%;
+	height: 500px;
+	background: antiquewhite;
+}
+}
+tr {
+	background: antiquewhite;
+}
+td{
+	color: blueviolet;
+	text-indent: 3.5em;
+	font-size: 5;
+	display: block;
+}
+h1{
+	font-family: "楷体";
+	color: azure;
+	text-indent: 2em;
+}
+h3{
+	color: azure;
+	text-indent: 3.5em;
+}
+p{
+	color: #8A2BE2;
+}
+#text{
+	width: 950px;
+	height: 40px;
+	margin-left: 55px;
+}
+#text1{
+	margin-left: 55px;
+}
+#text_sumbit{
+	margin-left: 255px;
+	width:100px;
+	height: 50px;
+	background: #ADFF2F;
+}
+#text_reset{
+	margin-left: 305px;
+	width:100px;
+	height: 50px;
+	background: #ADFF2F;
+}

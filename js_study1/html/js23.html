@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+        	作者：offline
+        	时间：2022-02-17
+        	描述：      事件对象
+        -->
+		<style type="text/css">
+			.{
+				margin: 0;
+				padding: 0;
+			}
+			#areadiv{
+				width: 300px;
+				height: 200px;
+				background-color: #F5DEB3;
+			}
+			#showMsg{
+				margin-top: 30px;
+				width: 300px;
+				height: 50px;
+				background-color: #FFFF00;
+			}
+			#followmouse{
+				width: 100px;
+				height: 100px;
+				background-color: #FF0000;
+				/*  开启绝对定位*/
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="areadiv"></div>
+		<div id="showMsg"></div>
+		<br>
+		<br>
+		<div id="followmouse"></div>
+	</body>
+	<script>
+		window.onload=function(){
+			//当鼠标在areadiv中移动时，showMsg会显示对应的坐标
+			//获取两个div
+			var areadiv=document.getElementById("areadiv");
+			var showMsg=document.getElementById("showMsg");
+			//  onmousemove   该事件将会在鼠标在元素中移动时候被触发
+			
+			//事件对象
+			//  当事件的响应对象被触发时，浏览器每次都会将一个事件对象作为实参传递给响应函数
+			
+			//   event 事件对象
+			//  在事件对象中封装了当前事件相关的一切信息，比如鼠标的坐标，键盘哪个按键被按下
+			// 所以在下面的响应函数中，要加入一个形参  ★★★★★★★★★★  (event)
+			
+			//在ie8中，响应函数被触发时，浏览器不会传递事件对象
+			//在ie8及以下的浏览器中，是将事件对象作为window对象的属性来保存的
+			//  即为改为        var x=window.event.clientX;就可以兼容ie8了
+			/*  
+			 * 解决事件对象的兼容性问题
+			 * 如果没有event，ie8的情况，就将window.event赋给event
+			 * 
+			   if(!event){
+			   	event=window.event;
+			   }
+			 或者        event=event||window.event
+			 这两个一样
+			 */
+			//  这种呢就所有浏览器都兼容(之前火狐不支持)
+			areadiv.onmousemove=function(event){
+				//显示鼠标的坐标
+				/*
+				 * clientX  可以获取鼠标指针的水平坐标
+				 * clientY  可以获取鼠标指针的水平坐标
+				 * 
+				 * 是获取鼠标在   当前可见窗口的坐标，即为对于浏览器而言，左上角始终是鼠标的零点
+				 * 实际上网页是要比窗口大的，如果以网页为参照物，那么坐标就不是正确的了
+				 */
+				var x=event.clientX;
+				var y=window.event.clientY;
+				//在下面的 showMsg中显示鼠标的坐标
+				showMsg.innerHTML="x="+x+" y="+y;
+			}
+			
+			
+			
+			
+			/*
+			 做一个可以跟随鼠标移动的div
+			 */
+			//获取div
+			var followmouse=document.getElementById("followmouse");
+			//绑定鼠标移动事件
+			//不能是followmouse,如果是的话，作用效果只会在followmouse里，出了这个div就没用了
+			//所以考虑全局，就要用doucument
+			document.onmousemove=function(){
+				//解决兼容性问题
+		  //event=event||window.event(这里不要写，写了这个功能只能移动一次,暂时不知道原因)
+				  //获取鼠标坐标
+				  //是获取鼠标在   当前可见窗口的坐标，即为对于浏览器而言，左上角始终是鼠标的零点
+				 //实际上网页是要比窗口大的，如果以网页为参照物，那么坐标就不是正确的了
+				 //而div的偏移量是针对网页的，不是针对当前窗口的
+				 
+				 //★★★★★★★★★★★★★★★★★
+				 //因此可以将clientX替换为pageX   cilentY替换为pageY  这里就不变了，要掌握
+				 //pageX和pageY可以获取鼠标相对于当前页面的坐标
+				 //注意，pageX和pageY 这两个属性在IE8里面不支持,兼容ie8就用cilentXY
+				 //或者 scrollHeight-scrollTop
+				var x=event.clientX;
+				var y=event.clientY;
+				  
+				  //设置div的偏移量
+				  // 元素.style.属性  前面讲过  将获取的x赋值给 left， y赋值给right
+				  //★★★★★★★★★★★★★★
+				  //注意  上面的x  y获取的是数值，而偏移量是 +"px"
+				  //第二点，偏移量只对开启定位的起作用
+				  //所以  followmouse这个div必须要开启定位
+				  followmouse.style.left=x+"px";
+				  followmouse.style.top=y+"px";
+			}
+		}
+	</script>
+</html>

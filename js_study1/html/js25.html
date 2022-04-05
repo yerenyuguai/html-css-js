@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--   style   快速生成下面写css的语句-->
+		<style type="text/css">
+			#box04{
+				width: 300px;
+				height: 300px;
+				background-color: yellowgreen;
+			}
+			#box05{
+				width: 200px;
+				height: 200px;
+				background-color: #F5DEB3;
+			}
+			#box06{
+				width: 100px;
+				height: 100px;
+				background-color:aqua;
+			}
+		</style>
+		<!--
+        	作者：offline
+        	时间：2022-02-19
+        	描述：事件的绑定，传播    
+        -->
+	</head>
+
+	<body>
+		<button id="btn004">点我</button>
+		<button id="btn005">兼容版点我</button>
+		<div id="box04"><div id="box05"><div id="box06">
+			</div></div></div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			var btn = document.getElementById("btn004");
+			/*btn.onclick = function() {
+				alert(1);
+			}
+			btn.onclick = function() {
+				alert(2);
+			}
+			//输出2  把前面输出1的绑定事件给覆盖了
+			//使用  对象.事件=函数 的形式来帮顶函数  ，只能为一个元素的一个事件绑定一个响应函数，
+			//不能绑定多个，会覆盖掉
+			/*
+			 * 如果想实现单击一个按钮完成两个响应时间呢
+			 * 
+			 * 有一个方法可以实现   
+			 * addEventListener(参数1，参数2，参数3)  直译添加事件监听器
+			 * 
+			 * 这个方法的this是指绑定事件的对象  
+			 *   
+			 * 参数         1.事件的字符串  onclick之类的  但是去掉前缀on  即click
+			 *     2 .回调函数        当事件触发时，该函数将会被调用
+			 *     3.是否在捕获阶段触发事件，需要一个Boolean值。一般都穿false
+			 *        如果希望在捕获阶段就触发事件的话，将参这个Boolean值改为true
+			 *  这样就可以为一个元素的相同事件同时绑定多个响应函数
+			 * 因此事件触发时，响应函数会按照函数的绑定顺序依次执行
+			 */
+			btn.addEventListener("click",function(){
+				alert("监听器方法1，");
+			},false);
+			btn.addEventListener("click",function(){
+				alert("监听器方法2");
+			},false);
+			//ie8及一下不支持  addEventListener()这个方法
+			//就可以用这个方法
+			/*
+			 *   attachEvent(参数1，参数2)  
+			 * 
+			 * 这个的this是 window
+			 *  参数1  事件的字符串  这里是需要加on的  
+			 * 参数2   回调函数，事件触发时，函数将会被调用
+			 * 
+			 * 同样也可以绑定多个
+			 * 但是是倒序输出  ，即为最后绑定  优先输出，跟上面的反过来了
+			 * 同样的这个方法只适合ie8及以下的
+			 * 
+			 * btn.attachEvent("onclick",function(){alert(1);})
+			 * 
+			 * 
+			 * 
+			 * 所以我们写一个方法，兼容不同浏览器
+			 * 
+			 */
+			// obj  要绑定的对象          eventstr 要绑定的事件(不要on，ie8到时候手动添加on) 
+			//callback回调函数
+			//bind  函数名，英文意思是绑定
+			function bind(obj,eventstr,callback){
+				
+				//这里this的话其他浏览器this都是调用的对象，这里就是这个obj
+				//而ie8呢是window  
+				//如何统一呢，无论哪个浏览器，this都指向这个obj
+				//  注意到有个callback  回调函数
+				//前面知道回调函数是浏览器调用，所以是window，所以改动的关键在这
+				//这时候想起来一个方法   叫 call()  前面说过可以修改函数的this  在js10
+				//所以callback.call(obj)  就可以强制this为obj了
+				//所以attachEvent()里不使用callback，而是写一个匿名函数  function(){}
+				//在匿名函数里调用回调函数
+				
+				if(obj.addEventListener){
+					//这个判断表示如果浏览器有这个方法就执行这里的
+					
+					//大部分浏览器兼容的方式  
+				obj.addEventListener(eventstr,callback,false);
+				}else{
+					
+				//如果ie8及以下
+				obj.attachEvent("on"+eventstr,function(){
+					callback.call(obj)//这样就变成自己调用，而不是浏览器调用，浏览器调用的是那个匿名函数
+				});// "on"+eventstr    这样就解决这个方法必须要on开头的
+				
+				
+				}
+				
+			}
+			var btn1 = document.getElementById("btn005");
+			bind(btn1,"click",function(){
+				alert("兼容版本");
+				//脑补ie8可以使用
+			})
+			
+			
+			
+			
+		/*
+		 * 
+		 *      事件的传播
+		 */
+		
+		//分别为三个div绑定单击响应函数
+		var box04=document.getElementById("box04");
+		var box05=document.getElementById("box05");
+		var box06=document.getElementById("box06");
+		
+		bind(box04,"click",function(){
+			alert("我是最外面")
+		})
+		bind(box05,"click",function(){
+			alert("我是中间")
+		})
+		bind(box06,"click",function(){
+			alert("我是里面")
+		});
+		//上面可以看出，单击box06  依次   里面  中间  外面，事件的传播就是由内而外
+		
+		}
+	</script>
+
+</html>

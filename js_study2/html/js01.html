@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<!--     拖拽元素功能的实现 
+			
+			当鼠标在被拖拽元素上按下时，开始拖拽
+			当鼠标移动时，被拖拽元素跟随鼠标移动
+			当鼠标松开时，被拖拽元素固定在当前位置
+		-->
+		<style type="text/css">
+			#box1{
+				width: 150px;
+				height: 150px;
+				background-color: red;
+				position: absolute;
+				/*开启绝对定位才可以进行拖拽，默认为static*/
+			}
+			#box2{
+				margin-top: 300px;
+				width: 150px;
+				height: 150px;
+				background-color: yellow;
+				position: absolute;
+				/*开启绝对定位才可以进行拖拽，默认为static*/
+			}
+		</style>
+	</head>
+	<body>
+		不要全选再拖动，不然我会不小心搜索的
+		<div id="box1"></div>
+		<div id="box2"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			
+			//事件一  当鼠标在被拖拽元素上按下时，开始拖拽  onmousedown 鼠标按下
+			var box1=document.getElementById("box1");
+			
+			  box1.onmousedown=function(event){
+			  	   event=event||window.event;
+			  	//第二个事件是嵌套在这里面的，必须触发事件一才可以触发事件二
+			  	
+			  	//这个是优化，开始拖拽时不会默认div左上角跟随鼠标
+		
+			        //最好在点击这里求，之后位置不变了
+			        //offsetLeft 
+			        //当前元素相对于其定位父元素offsetParent的水平偏移量      这里即为div相对窗口的偏移量
+			     var ol=event.clientX-box1.offsetLeft;  //鼠标位置，减去偏移量
+			     //  就等于期望拖拽的位置与默认拖拽的位置(div左上角跟随鼠标)之间的距离
+			     var ot=event.clientY-box1.offsetTop;
+			        //div的偏移量  鼠标.clientX-元素.offsetLeft   水平
+			  	    //div的偏移量  鼠标.clientY-元素.offsetTop  垂直 
+			  	
+			       document.onmousemove=function(event){
+			  	    //获取鼠标  用到event  兼容性问题
+			  	    event=event||window.event;
+			  	    //事件二  当鼠标移动时，被拖拽元素跟随鼠标移动  onmousemove
+			  	    //获取鼠标坐标
+			  	    
+			  	 
+			  	    // 未优化 var left=event.clientX;
+			  	    var left=event.clientX-ol;
+			  	    var top=event.clientY-ot;
+			  	    //修改box1的位置
+			  	    box1.style.left=left+"px";
+			  	    box1.style.top=top+"px";
+			       }
+			       
+			         //事件三    当鼠标松开时，被拖拽元素固定在当前位置   onmouseup
+			         //也是用document绑定，如果是给box1，移动到box2的时候会出问题
+			       document.onmouseup=function(){
+			       	//当鼠标松开时，被拖拽元素固定在该位置  
+			       	//取消onmousemove事件
+			       	document.onmousemove=null;
+			       	//触发完这个事件后同样也需要取消，因为没用了,鼠标按下才会触发，不按的话就没有存在意义
+			       	document.onmouseup=null;
+			       }
+			       //当我们拖拽一 个网页中的内容时，浏览器会默认去搜索引擎中搜索内容，
+                   //此时会导致拖拽功能的异常， 这个是浏览器提供的默认行为，
+                   //如果不希望发生这个行为，则可以通过return false来取消默认行为
+                   //但是对ie8不起作用
+                   //bug？？为啥不起作用  
+                   return false;
+			       
+			  }	
+			  
+		}
+	</script>
+</html>

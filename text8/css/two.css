@@ -1,0 +1,39 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#div1 {
+	background-image: url(../img/bgimags.jpg);
+	width: 90%;
+	margin-left: 70px;
+	height: 780px;
+}
+
+#body {
+	border: 8px solid white;
+	width: 80%;
+	margin-top: 30px;
+	margin-left: 110px;
+	height: 750px;
+}
+#i{
+	text-align: left;
+}
+h1 {
+	text-align: center;
+	color: #0000FF;
+}
+
+td {
+	display: block;
+	border: 2px solid white;
+}
+
+h4 {
+	color: #0000FF;
+}
+
+p {
+	color: #8A2BE2;
+}

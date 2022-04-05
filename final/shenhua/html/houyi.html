@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>后羿射日</title>
+		<link rel="stylesheet" href="../css/shenghua.css">
+		<style>
+			.text{
+				margin-left:100px;
+				width:70%;
+			}
+			img{
+				width:100%;
+				height:380px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="divboss">
+				<div id="left" class="div1">
+					<div class="left_div">
+						<span id="sheng" >神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi">事</span>
+					</div>
+				</div>
+				
+				<div id="middle" class="div2">
+					<span style="font-size: 40px;"><i>后羿射日~</i></span>
+					<div class="text">
+					    <p>&nbsp;&nbsp;&nbsp;&nbsp;传说古时候，天空曾有十个太阳，他们都是东方天帝的儿子。这十个太阳经常在最东边的东海洗澡。洗完澡后，让他们像小鸟那样栖息在一棵大树上。
+
+当黎明需要晨光来临时，栖息在树梢的太阳便坐着两轮车，穿越天空，照射人间，把光和热洒遍世界的每个角落。 十个太阳每天一换，轮流当值，秩序井然，天地万物一片和谐。人们在大地上生活得非常幸福和睦。可是，这样的日子过长了，这十个太阳就觉得无聊，他们想要一起周游天空，觉得肯定很有趣。于是，十个太阳像十个大火团，在天空中照射着大地，烧死了许多人和动物。这时，有个年轻英俊的英雄叫后羿，他是个神箭手。他看到人们生活在火难中，心中十分不忍，便暗下决心射掉那多余的九个太阳，帮助人们脱离苦海。于是，后羿翻山越岭，来到了东海边，后羿拉开了万斤力弓弩，搭上千斤重利箭，瞄准天上火辣辣的太阳，无一虚发，射掉了九个太阳。中了箭的九个太阳一个接一个地死去。他们的羽毛纷纷落在地上，他们的光和热一点一点地消失了。直到最后剩下一个太阳，他怕极了，就按照后羿的吩咐，老老实实地为大地和万物继续贡献光和热。</p>
+						<br><br>
+						<img src="../img/houyi.jpg">
+					</div>
+					
+				</div>
+				<div id="right" class="div3">
+					<div class="left_div">
+						<span id="sheng2">神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua2">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu2">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi2">事</span>
+					</div>
+				</div>
+			</div>
+		</body>
+		<script  src="../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+			var str = ["#000000","#2F0000","#600030","#460046","#3C3C3C","#600000","#9F0050","#D9006C","#00E3E3","#02F78E","#28FF28","#EA7500","#FFDC35","#FFF8D7","#6FB7B7","#CF9E9E","#F3F3FA","#9F4D95","#336666","#CCFF80","#EAC100","#642100","#CEFFCE","#96FED1","#00E3E3"];
+			var hanziLeft = ["#sheng","#hua","#gu","#shi"];
+			var hanziRight = ["#sheng2","#hua2","#gu2","#shi2"];
+			$(function(){
+				setInterval("changeColor()",300);
+			});
+			
+			/* 实现文字颜色动态改变 */
+			function changeColor(){
+				//随机获取一个颜色
+				var len = str.length
+				var index = Math.round(Math.random()*len+1);
+				//随机获取一个字
+				var index2 = Math.round(Math.random()*4);
+				$(hanziLeft[index2]).attr("style","color:"+str[index]);
+				$(hanziRight[index2]).attr("style","color:"+str[index]);
+			}
+			
+		</script>
+	</body>
+</html>

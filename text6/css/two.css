@@ -1,0 +1,81 @@
+#allin {
+	background: greenyellow;
+	width: 100%;
+	height: 900px;
+}
+
+#left {
+	float: left;
+	background: blanchedalmond;
+	width: 15%;
+	height: 900px;
+}
+
+#left1 {
+	margin-top: 10px;
+	height: 25%;
+	background: darkorchid;
+}
+
+#left2 {
+	margin-top: 10px;
+	height: 24%;
+	background: darkorchid;
+}
+
+#left3 {
+	margin-top: 10px;
+	height: 24%;
+	background: darkorchid;
+}
+
+#left4 {
+	background: darkorchid;
+	margin-top: 10px;
+	height: 24%;
+}
+
+#left p {
+	padding-top: 65px;
+	text-align: center;
+	font-size: larger;
+}
+
+#left p a:link {
+	color: aquamarine;
+}
+
+#left p a:visited {
+	color: #000000;
+}
+
+#left p a:hover {
+	color: brown;
+}
+
+#left p a:active {
+	color: darkcyan;
+}
+
+#left p a {
+	text-decoration: none;
+}
+
+#right {
+	margin: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	width: 85%;
+	height:100%;
+}
+
+.item {
+	height: 300px;
+	margin: 5px;
+	flex-grow: 1;
+}
+.item img {
+	border-radius: 15px;
+	width: 100%;
+	height: 100%;
+}

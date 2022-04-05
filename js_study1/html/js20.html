@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 使用DOM操作css
+			 */
+			window.onload = function() {
+				//点击按钮以后，修改box3的属性
+
+				//获取box，和btn1
+				var box3 = document.getElementById("box3");
+				var btn1 = document.getElementById("btn1");
+				//绑定响应函数
+				btn1.onclick = function() {
+					//修改box3的宽度
+					//通过js来修改元素的样式
+					//语法    元素.style.样式名="样式值"  样式值必须为字符串类型  ""
+					box3.style.width = "300px";
+					box3.style.height = "300px";
+					/*
+					 * 注意  如果css样式命中含有-
+					 * 这种名称在js中是不合法的比如  background-color
+					 * 要想使用就要将这个样式名修改为驼峰命名法，
+					 * 即为   去掉-，然后将-后的字母大写
+					 * 即为    backgroundColor
+					 * 
+					 * 通过style属性设置的样式都是内联样式
+					 * 而内联样式优先级很高，所以通过js修改的样式往往会立即执行
+					 * 甚至覆盖了id选择器的样式  #box3{}
+					 * 
+					 * 但是如果在其他样式里修改 比如  #box3 里的
+					 * background-color: red  !important;
+					 *  !important强制让他优先级最高，即使通过js也不能覆盖
+					 * 导致js修改失效，尽量不要为样式添加这个
+					 * 
+					 * 优先级:行内(内联)样式>内部样式>外部样式( 就近原则，谁离元素更近，谁优先级就更高)
+					 * 
+					 */
+					box3.style.backgroundColor = "aquamarine";
+				};
+				//获取btn2
+				//先点一，再点二
+				var btn2 = document.getElementById("btn2");
+				btn2.onclick = function() {
+					//读取属性的样式值
+					//语法    元素.style.样式名
+					//box3.style.width读取的是内联样式
+					//直接读取#box3{}读取不到，不是内联样式，而btn1里js修改的为样式
+					alert(box3.style.width);
+
+				}
+				/*
+				 * 获取元素的样式    读取当前的样式
+				 */
+
+				/**
+				var box4=document.getElementById("box4");
+				var btn3=document.getElementById("btn3");
+				btn3.onclick=function(){
+					//读取box4的样式
+
+					//可以通过如下语法  获取当前显示的样式
+					//  元素.currentStyle.样式名
+						//读取box4的宽度
+					alert(box4.currentStyle.width);
+				}
+				这个方法是适合ie使用
+				*/
+				//那么在其他浏览器中，可以使用下面的方法进行调用
+				//★★★★★★★★★★★★★
+				var box4 = document.getElementById("box4");
+				var btn3 = document.getElementById("btn3");
+				btn3.onclick = function() {
+					//读取box4的样式
+
+					//getComputedStyle()方法来获取元素当前的样式
+					//这个方法是window的方法，可以直接使用，同样不适合ie8及以下
+					//需要两个参数  第一个 要获取样式的元素，第二个 可以传递一个伪元素(一般都为null)
+					//如果获取的样式没有设置，则会获取真实的值，而不是默认值
+					//比如，没有设置width，他不会获取到auto，而是一个长度
+					var obj = getComputedStyle(box4, null);
+					//该方法会返回一个对象，对象中封装了当前元素对应的样式
+					alert(obj.width);
+					alert("接下来用构造的方法");
+					alert(getStyle(box4, "width"));
+				}
+			}
+
+			//定义一个函数，用来获取指定元素的当前样式
+			// 参数  ：obj  要获取的元素      name 要获取的样式名
+			function getStyle(obj, name) {
+				//name这个参数  有引号的，如"width" 
+				return getComputedStyle(obj, null)[name];
+				//不能  getComputedStyle(obj,null).name
+				//这表示获取名字为name的样式，写死了，而上面的 name是传参一个变量
+				//详细见 js04
+				//如果属性名是数字或者是汉字或非常规的可以用如下方式
+				//  语法：    对象["属性名"]=属性值
+				//使用[]  这种形式操作属性，更加灵活
+				//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+				//同时[] 可以传递一个变量，这样变量值是多少就会读取到那个属性	
+				//这里的  getComputedStyle(obj,null)[name];  name就是传递的变量
+
+				//ie8及以下
+				//return obj.currentStyle[name];
+
+				//那这样的话只能要么兼容其他浏览器，要么只能兼容ie8
+				//有一个方法可以让这两个兼容
+				/*
+				 * function getStyle(obj,name){
+				 * 	if(window.getComputedStyle){  //表示如果有这个属性则
+				 * 	//正常浏览器的方式，
+				 * return getComoutedStyle(obj,null)[name];
+				 * }else{
+				 * 	return obj.currentStyle[name];
+				 * }
+				 * }
+				 */
+
+			}
+
+			//★★★★★★★★★★★★★★★
+			//通过 currentStyle和getComputedStyle()读取到的样式都是只读的
+			//不能修改，如果修改必须通过style属性
+		</script>
+		<style type="text/css">
+			#box3 {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+			
+			#box4 {
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button id="btn1">点我一下就变色变大</button>
+		<button id="btn2">点我一下就读取我的属性</button>
+		<div id="box3">
+		</div>
+		<br>
+		<button id="btn3">点击读取属性</button>
+		<div id="box4">
+
+		</div>
+	</body>
+
+</html>

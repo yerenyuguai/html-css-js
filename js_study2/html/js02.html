@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--  元素可以跟随鼠标的滚轮变大或者变小     
+			
+			
+			  本节火狐浏览器存疑  不知道那里的原因
+		-->
+		<style type="text/css">
+			#box3 {
+				width: 100px;
+				height: 100px;
+				background-color: gold;
+				min-height: 10px;
+				/*限制最小高度*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box3"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			//当鼠标滚轮向下滚轮时，div变长
+			//当鼠标滚轮向上滚轮时，div变短
+			var box3 = document.getElementById("box3");
+			//为box3绑定一个 鼠标滚轮滚动的事件   onmousewheel
+			//火狐不支持这个属性  ★★★★★★★★
+
+			//在火狐中需要使用  DOMMouseScroll 来绑定滚动事件  
+			//  而且该事件需要通过addEventListener()函数来绑定
+			box3.onmousewheel = function(event) {
+				event=event||window.event;
+				//判断鼠标滚轮的方向   event.wheelDelta 可以获取鼠标滚动的方向   火狐中不支持
+				//  alert(event.wheelDelta)  往上滚   会显示正值          往下滚  会显示负值
+				//   火狐用 event.detail        往上滚 显示负值   往下  显示正值，和上面正好反过来
+				//alert(event.wheelDelta);
+				//alert(event.detail);
+				if(event.wheelDelta>0||event.detail<0){
+					//向上滚    box变短
+					box3.style.height=box3.clientHeight-10+"px";
+				}else{
+					box3.style.height=box3.clientHeight+10+"px";
+				}
+				
+				
+				//如果当滚轮滚动时，如果浏览器有滚动条，滚动条也会随之滚动
+				//这是浏览器的默认行为，如果不希望发生，则可以取消默认行为，即下面的
+				//return false;
+				//由于这是使用addEventListener()方法绑定响应函数，return false取消没有效果
+				//这时候用这个  ★★★★★★★★★★★★★★★★★★★★★★★★  用来取消默认行为
+				event.preventDefault();//专门针对这个addEventListener()取消默认行为\
+				//ie8不支持 直接调用会报错
+				return false;
+			}
+			bind(box3,"DOMMouseScroll",function(){
+				alert(1);
+			});
+			function bind(obj, eventstr, callback) {
+				if(obj.addEventListener) {
+					obj.addEventListener(eventstr, callback, false);
+				} else {
+					obj.attachEvent("on" + eventstr, function() {
+						callback.call(obj) 
+					});
+				}
+			}
+			
+			
+			
+		}
+	</script>
+
+</html>

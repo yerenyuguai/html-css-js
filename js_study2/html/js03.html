@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--   键盘事件       -->
+
+	</head>
+
+	<body>
+		<input type="text">
+
+	</body>
+	<script type="text/javascript">
+		//onkeydown   某个按键被按下
+		//如果按住某个按键不松手，事件就会一直触发
+		//onkeyup   某个按键被松开
+		//  只会触发一次
+		//键盘事件一般绑定给可以获取到焦点的对象  ，比如document对象 
+		//比如这个input里的，点击input里面的光标在闪动，说明获取焦点 ，点外面表示失去焦点
+		//所以像div没法获取焦点，更别提绑定事件了
+		window.onload = function() {
+
+			document.onkeydown = function(event) {
+				event = event || window.event;
+				//event可以帮助我们获取按下的是哪一个
+				//  可以通过keyCode来获取按键的编码   通过它可以知道哪个键被按下
+				//  console.log(event.keyCode);   ASCII编码
+
+				//除了keyCode，事件对象还提供了几个属性   
+				//altKey
+				//crtlKey
+				//shiftKey    这三个分别潘多  alt，crtl，shift是否被按下，如果按下返回true
+				//判断y  是否被按下
+				if(event.keyCode == 89) { //89是y的ASCII编码
+					console.log("yyyyyy");
+				}
+				//判断y 和ctrl是否同时按下
+				if(event.keyCode == 89 && event.ctrlKey) { //89是y的ASCII编码
+					console.log("y和CTRL同时被按下");
+				}
+			}
+			//功能类似不做演示
+			//document.onkeyup=function(){	}
+			
+			var input1 = document.getElementsByTagName("input")[0];
+			input1.onkeydown = function(event) {
+				//在文本框中输入内容，属于onkeydown的默认行为
+				//如果取消默认行为，输入的内容将不会出现在文本框中
+				//return false;
+
+				event = event || window.event;
+				//实现只能输入非数字
+				//0-9的数字的ASCII编码是  48-57
+				//小键盘上的数字编码不一样，需要额外写
+				if(event.keyCode >= 48 && event.keyCode <= 57) { return false; }
+
+			}
+
+		}
+	</script>
+
+</html>

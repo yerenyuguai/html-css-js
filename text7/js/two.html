@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title二级导航下拉菜单</title>
+			<style type="text/css">
+				ul{
+					margin: 0px;
+					padding: 0px;
+				}
+				ul li{
+					height: 30px;
+					width: 253px;
+					list-style: none;
+					float: left;
+					display: inline;
+					font: 0.9em arial,helvetica,sans-serif;
+					background: aquamarine;
+				}
+				ul li a{
+					color: #0000FF;
+					width: 199px;
+					text-decoration: none;
+					display: block;
+				}
+				ul li ul li{height: 30px;}
+				ul li ul li a{background:#DC143C;line-height: 24px;}
+				ul li a:hover{background: #00FFFF; border-bottom: 1px dashed red;}
+				ul li ul{visibility: hidden;}
+				ul li:hover ul{visibility:visible;}
+				ul li ul li a:hover{background: #0000FF;}
+			</style>
+	</head>
+
+	<body>
+		<div>
+			<ul>
+				<li>首页</li>
+				<li><a href="#">系部</a>
+					<ul>
+						<li>计算机科学</li>
+						<li>软件工程</li>
+						<li>网络工程</li>
+						<li>信息管理</li>
+						<li>网络空间安全</li>
+						<li>物联网工程</li>
+					</ul>
+				</li>
+				<li>职能部门</li>
+				<li>名师风采</li>
+				<li>新闻中心</li>
+				<li>下载中心</li>
+			</ul>
+		</div>
+		<h4 align="center">版权所有&copy;软件B191邵昱赫201907044129</h4>
+	</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			#b1 {
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+			}
+			#s1{
+				background-color: deepskyblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="b1">我是div的b1<span id="s1">我是span的s1</span></div>
+		<br>
+		<button id="btn003">添加超链接</button>
+		<ul id="uu">
+			<li><a href="javascript:;" class="link">超链接一</a></li>
+			<li><a href="javascript:;" class="link">超链接二</a></li>
+			<li><a href="javascript:;" class="link">超链接三</a></li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			
+			/*
+			//为s1绑定单击响应函数
+			var s1=document.getElementById("s1");
+			s1.onclick=function(){
+				alert("我是span的单击响应函数")
+			}
+			//为b1绑定单击响应函数
+			var b1=document.getElementById("b1");
+			b1.onclick=function(){
+				alert("我是div的单击响应函数")
+			}
+			//为body绑定单击响应函数
+			document.body.onclick=function(){
+				alert("我是body的单击响应函数")
+			}
+			*/
+			//按照上面的方式,会发现点击span会弹出三个aler()，因为span是div的子元素，div又是body的子元素
+			
+			/*
+			 *   上面的现象就叫做  事件的冒泡    所谓的冒泡就是事件的向上传导
+			 * 当后代元素上的事件被触发时，其祖先元素的  相同事件也会触发
+			 * 这里单击span的单击响应函数，同时冒泡到div和body，也触发了他们的单击响应函数
+			 * 
+			 * 然而在开发中大部分情况是有用的，如果不希望发生冒泡
+			 * 可以通过事件对象来取消冒泡
+			 */
+			
+			//在上面的基础上取消冒泡 
+			//为s1绑定单击响应函数
+			var s1=document.getElementById("s1");
+			s1.onclick=function(){
+				alert("我是span的单击响应函数");
+				//取消冒泡
+				event.cancelBubble=true;
+				//cancelBubble现在所有浏览器都兼容了
+			}
+			//为b1绑定单击响应函数
+			var b1=document.getElementById("b1");
+			b1.onclick=function(){
+				alert("我是div的单击响应函数");
+				//取消div的冒泡
+				event.cancelBubble=true;
+			}
+			//为body绑定单击响应函数
+			
+			/*
+			document.body.onclick=function(){
+				alert("我是body的单击响应函数")
+			}
+			
+			注释掉，为了不影响下面
+			*/
+			
+			
+			
+			
+			/*超链接的部分
+			 */
+			
+			//点击按钮以后添加超链接
+			var ul=document.getElementById("uu");
+			var btn003=document.getElementById("btn003");
+			btn003.onclick=function(){
+				//创建一个超链接
+				var li=document.createElement("li");
+				li.innerHTML="<a href='javascript:;' class='link'>新添加的超链接</a>";
+				//将li添加到ul中
+				ul.appendChild(li);
+				/*
+				 * 为每一个超链接都绑定一个单击响应函数
+				 * 这里我们为每一个超链接都绑定了一个单击响应函数。这种操作比较麻烦，
+				 * 而且这些操作只能为已有的超链接设置事件，而新添加的超链接必须重新绑定
+				 * 这样就很麻烦，假设一百个超链接，就要重新绑定一百次，性能低
+				 * //获取所有的a
+			var alla=document.getElementsByTagName("a");
+			//遍历
+			for(var i=0;i<alla.length;i++){
+				alla[i].onclick=function(){
+					.......
+				}
+			}
+				 * 
+				 * 希望只绑定一次事件，即可应用到多个元素上，即使这个元素是后来添加的
+				 * 所以我们可以将事件绑定给父元素
+				 * 这样点击子元素(无论新添加旧添加)，事件绑定在父元素上，解决了上面的问题
+				 * 这个就叫做    事件的委派    
+				 * 将事件统一绑定给元素的共同的祖先元素，这样当后代元素上的事件触发时，会一直冒泡到
+				 * 祖先元素的响应函数来处理事件      
+				 *  
+				 * 事件委派是利用了冒泡，通过委派可以减少事件绑定的次数，提高元素的性能
+				 * 
+				 * 下面的ul.onclick=function(){}就是这个
+				 */
+				
+			}
+			ul.onclick=function(){
+					//因为弄到了父元素，可父元素ul可不止包括a，还包括其他的标签或者文本
+					//所以也要做一个判断
+					//如果触发事件的对象是我们期望的元素，则执行否则不执行
+					event=event||window.event;//兼容
+					/*
+					 * target   event中的target表示的是触发事件的对象
+					 * 即谁触发的就是谁，而不是绑定谁就是谁
+					 */
+					if(event.target.className=="link"){
+						alert("我是ul响应函数")
+					}
+					//这样确保出发对象是a才可以执行
+					
+				}
+			
+		}
+	</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：通过script标签导入外部编写的js文件,css是link引入，js是script引入
+        	发现，下面第一个的alert并不执行，因为scrpit一旦作为引入外部文件,就不能编写代码了，
+        	即使编写也会被忽略，所以可以另外写一个script标签
+        -->
+        <script type="text/javascript" src="../js/js01.js">
+        	alert("我是内部js中的代码");/*无法实现*/
+        </script>
+        <script type="text/javascript">
+        	alert("我是内部js中的代码");/*可以实现*/
+        </script>
+		<!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：\js代码要写在script标签中,输入sc显示下面的框架
+        -->
+        <script type="text/javascript">
+        	/*控制浏览器弹出一个警告框*
+        	 * alert("这是我的第一行js代码");/
+        	
+        	/*让计算机在页面内输出一个内容
+        	 * document.write("看我出不出来~");向body内输出一个内容
+        	 */
+        	
+        	/*向控制台输出一个内容
+        	 * console.log("你猜我在哪出来");控制台显示，页面内不显示，不受浏览器的限制
+        	 */
+        	//单行注释，ctrl加/
+        </script>
+	</head>
+	<body>
+		<!--可以将js代码编写到标签的onclick属性中
+			当点击按钮时，js代码才会执行
+			也可将js代码写在超链接的href属性中，
+			javascript:语句
+			这样当点击超连接时会执行js代码
+		-->
+		<button onclick="alert('你干嘛啊哈哈，哎呦');">点我</button>
+		<a href="javascript:alert('烦内');">点我</a>
+		<a href="javascript:;">点击不会显示东西的</a>
+		<!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：但是body里的东西，虽然可以写在标签属性中，但他们属于结构和行为耦合，不方面维护
+        	因此可以连接一个外部的.js文件
+        -->
+	</body>
+</html>

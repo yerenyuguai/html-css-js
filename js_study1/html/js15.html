@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+        	作者：offline
+        	时间：2022-02-14
+        	描述：★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        -->
+		
+		<style>
+			. {
+				margin: 0;
+				padding: 0;
+			}
+			
+			
+			
+			#ball {
+				margin-top: 20px;
+				background-color: aquamarine;
+				height: 200px;
+			}
+		</style>
+		<script type="text/javascript">
+			//必须在window.onload=function(){}里创建
+			//window.onload() 方法用于在网页加载完毕后立刻执行的操作，
+			//即当 HTML 文档加载完毕后，立刻执行某个方法。
+			//window.onload() 通常用于 <body> 元素，
+			//在页面完全载入后(包括图片、css文件等等)执行脚本代码。
+			
+				
+			window.onload=function(){
+			
+			//获取数组放到外面不用每个都写获取了	
+			var items=document.getElementsByName("a1");//得到的是数组
+			//获取全选/全不选
+			var allIsNot=document.getElementById("allIsNot");
+			
+				//全选，点击按钮之后，这四个都会被选中
+			var allcheck=document.getElementById("allcheck");
+			allcheck.onclick=function(){
+				//设置四个多选框都被选中
+				//注意看下面，四个球都有一个相同的name属性 a1
+				//遍历items
+				for(var i=0;i<items.length;i++){
+					//checked属性设置或返回checkbox是否应该被选中
+					//checkObje.checked=false/true;
+					items[i].checked=true;
+				}
+				//将全选/全不选勾选
+				allIsNot.checked=true;
+			}
+			//全不选，点击按钮之后，这四个都会取消选中
+			var allnotcheck=document.getElementById("allnotcheck");
+			allnotcheck.onclick=function(){
+				//遍历items
+				for(var i=0;i<items.length;i++){
+					//checked属性设置或返回checkbox是否应该被选中
+					//checkObje.checked=false/true;
+					items[i].checked=false;
+				}
+				//将全选/全不选取消勾选
+				allIsNot.checked=false;
+			}
+			
+			//反选按钮，选中的变为没选中，没选中的变为选中
+			var recheck=document.getElementById("recheck");
+			//依旧默认选中
+			
+			recheck.onclick=function(){
+				//遍历items
+				allIsNot.checked=true;
+				for(var i=0;i<items.length;i++){
+					
+					/*
+					  if(items[i].checked==false){
+					items[i].checked=true;
+					}else{
+					items[i].checked=false;
+					}
+					 * 
+					 * 下面用更简便的方法
+					 * 直接在原来值的基础上赋值取反
+					 */
+					items[i].checked=!items[i].checked;
+					//考虑全选/全不选
+					if(!items[i].checked){
+						allIsNot.checked=false;
+						//不能break，上面没有遍历的数还需要取反
+					}
+				}
+			}
+			
+			//提交按钮  ，将所有选择的情况提交
+			var send=document.getElementById("send");
+			send.onclick=function(){
+				for(var i=0;i<items.length;i++){
+					if(items[i].checked==true){
+						alert(items[i].value);
+					}
+				}
+			}
+			//全选/全不选的多选框
+			//在事件的响应函数中，响应函数给谁绑定的this就指向谁,这里就是allIsNot
+			allIsNot.onclick=function(){
+				for(var i=0;i<items.length;i++){
+					//将选中未选中赋值给这些item
+					items[i].checked=this.checked;
+				}
+			}
+			
+			//细节完善，当全选后在取消某一个，全选/全不选的会取消勾选
+			//逐个点击勾选后，全选/全不选也会勾选上
+			//为四个多选框分别绑定单击响应
+			for(var i=0;i<items.length;i++){
+				items[i].onclick=function(){
+					//默认allIsNot为选中状态
+					//点击这个全选/全不选时，默认全选
+					allIsNot.checked=true;
+					//判断四个多选框是否全选
+					for(var j=0;j<items.length;j++){
+						if(!items[j].checked){
+							//一旦进入判断就说明不是全选就取消
+							//如果有一个没勾选,则全选/全不选的也会不勾选
+							allIsNot.checked=false;
+							//退出循环
+							break;
+						}
+					}
+				};
+			}
+			}
+		</script>
+	</head>
+
+	<body>
+		
+		<div id="ball">
+			<form method="post" action="">
+				<b>你热爱的运动是</b><input type="checkbox" id="allIsNot">全选/全不选
+			    <br>
+				6.您认为该专业学生有必要参加社会实践:
+				<br>
+					<input type="checkbox" name="a1" value="足球">足球
+					<input type="checkbox" name="a1" value="篮球">篮球
+					<input type="checkbox" name="a1" value="羽毛球">羽毛球
+					<input type="checkbox" name="a1" value="乒乓球">乒乓球
+                <br>
+					<input type="button" id="allcheck" value=" 全   选   ">
+					<input type="button" id="allnotcheck" value=" 全 不  选   ">
+					<input type="button" id="recheck" value=" 反   选   ">
+					<input type="button" id="send" value=" 提   交   ">
+			</form>
+
+		</div>
+	</body>
+
+</html>

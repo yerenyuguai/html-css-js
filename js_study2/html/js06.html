@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="js05.html">去js05.history.html</a>
+		<br>
+		这样就可以实现跳转到上一页 用到了history对象
+		<br>
+		<button id="Btn">点我显示长度，即为访问了点开了几次页面</button>
+		<br>
+		<button id="Btn1">点我回到上一个页面</button>
+		<br>
+		<button id="Btn2">点我跳转到下一个页面</button>
+		<br>
+		<a href="js07.html">点我去js07，我是为第三个按钮服务的</a>
+		<button id="Btn3">点我跳转到指定页面(没给参数，看代码吧)</button>
+	</body>
+	<script type="text/javascript">
+		//length  属性   可以获取到当前访问的链接数量，即点开过几次页面，浏览器一旦关闭就会清零
+		var btn=document.getElementById("Btn");
+		var btn1=document.getElementById("Btn1");
+		var btn2=document.getElementById("Btn2");
+		var btn3=document.getElementById("Btn3");
+		window.onload=function(){
+			btn.onclick=function(){
+				alert(history.length);
+				
+			}
+			btn1.onclick=function(){
+				
+				//和浏览器一样，你至少点开两个页面才会有上一个页面
+				//点到过下一个页面后，在之前页面中才可以跳转到下一个页面
+				//点击下面按钮的时候要注意操作
+				
+				//back()  可以用来返回上一个页面，作用和浏览器的回退按钮一样
+				history.back();//实现回退效果，注意是不会改变增加  history.length的长度★★★★★★
+			}
+			btn2.onclick=function(){
+				//forword() 可以跳转到下一个页面，作用和浏览器的前进按钮一样
+				history.forward();//跳转到下一页，注意是不会改变增加  history.length的长度★★★★★★
+			}
+			btn3.onclick=function(){
+				//go() 可以跳转到指定页面   需要以一个整数作为一个参数
+				//  1表示想前跳转一个页面      相当于forword()
+				//   2表示向前跳转2个页面
+				//  -1  向后跳转一个页面   相当于back()     
+				//   参数以此类推
+				history.go();
+			}
+			
+		}
+		
+	</script>
+</html>

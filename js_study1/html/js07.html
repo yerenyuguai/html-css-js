@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 解析器(浏览器)在调用函数每次都会向函数内部传递一个隐藏的参数
+			 *  这个隐含的参数就是this，this指向的是一个对象
+			 *   这个对象我们成为函数执行的上下文对象
+			 * 根据函数调用方式的不同，this会指向不同的对象，和python的self差不多
+			 * 跟创建方式没关系
+			 *    1.以函数形式调用时，this永远是window(下面的fun();)
+			 *    2，以方法形式调用时，就是调用方法的那个对象(obj.sayName();),会不断变化的
+			 */
+			function fun(){
+				console.log(this.name);
+			}
+			//创建一个对象
+			var obj={
+				name:"拐子",
+				sayName:fun
+			}
+			var name1="全局变量";
+			console.log(obj.sayName==fun);//sayName:fun这样他俩就都指向这个方法
+			obj.sayName();//调用obj对象的sayName方法，指定sayName等价于fun，
+			//然后this就指向了调用fun的obj对象，输出this.name
+			//而 1.以函数形式调用时，this永远是window(下面的fun();)
+			//所以以函数形式调用，this指向的是window对象，window对象指向的变量是全局变量
+			fun();//调用window.this1
+			
+			
+			//使用工厂方法，批量生产对象
+			function create(name,age){
+				//创建一个新的对象
+				var obj=new Object();
+				//为对象添加属性
+				obj.name=name
+				obj.age=age;
+				obj.sayName=function(){
+					alert(this.name);
+				}
+				//将对象返回
+				return obj;
+			}
+			var obj2=create("野浩",18);
+			console.log(obj2);
+			//但是使用工厂方法创建的对象，使用的构造函数都是Object();
+			/*
+			 * 我们希望的是  var obj=new Person();和var obj=new Dog();
+			 * 所以创建一个构造函数，专门创建Person对象
+			 *  构造函数就是一个普通的函数，创建方式和普通函数没有区别，但构造函数习惯上首字母大写
+			 * 
+			 * 构造函数和普通函数的区别就是调用方式不同
+			 * 普通函数是直接调用 ,obj.fun();
+			 * 而构造函数需要使用new关键字来调用；var p1=new Person();
+			 * 
+			 * 构造函数执行流程：
+			 *   当你调用构造函数，会立刻创建一个对象
+			 *   将新建的对象设置为函数中的this，在构造函数中可以使用this来引用新建的对象
+			 *   逐行执行函数中的代码
+			 *   将新建的对象作为返回值返回
+			 * 使用同一类构造函数构建的对象，我们称为同一类对象，p1对象称为person类的实例
+			 */
+			function Person(name,age){
+				this.name=name;
+				this.age=age;
+				this.sayage=function(){
+					console.log("我洪少年龄是"+this.age);
+				}
+			}
+			var p1=new Person("洪少",22);
+			p1.sayage();//这里的一个实例创建一个sayage
+			console.log("年龄是"+p1.age);
+			//使用 instanceof 可以检查一个对象是否是一个类的实例
+			console.log(p1 instanceof Person);//显示true，说明p1是person的实例
+			console.log(p1 instanceof Object);//所有对象在Object检查都会返回显示true
+			//注意看，sayage()是在构造函数里面的创建的
+			//sayage()每创建一个实例就有一个，所有实例的sayage都是唯一的
+			//这样就导致了构造函数执行一次就会创建一个新的sayage
+			//这就很冗余
+			//所以就将sayage弄到外面，下面再构造一个方法，sayage弄到外面
+			//这样的话所有实例共用这一个sayage
+			function Dog(name,age){
+				this.name=name;
+				this.age=age;
+				this.sayage=fun1;
+			}
+			function fun1(){
+					console.log("本汪年龄是"+this.age);
+				}
+			var d1=new Dog("旺财",18);
+			d1.sayage();//这里所有的实例共用一个sayage
+			console.log("年龄是"+d1.age);
+			//但是也有弊端，fun1(sayage)方法在全局定义域中定义
+			/*
+			 * 将函数定义在全局作用域，污染了全局作用域的空间
+			 * 而且定义在全局作用域也很不安全，在工作时，和他人协作项目时有可能名字相同会造成冲突
+			 */
+			/*
+			 *          重点内容  原型prototype
+			 *   我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype
+			 * 每一个函数都有自己独立的prototype属性
+			 * 这个prototype属性对应一个对象，这个对象就是我们所谓的原型对象
+			 * 如果函数只是作为普通函数调用，prototype则没有任何作用
+			 * 
+			 * 当函数以构造函数的形式调用时，他所创建的对象中都会有一个隐含的属性，
+			 * 指向该构造函数的原型对象，我们可以通过__proto__来访问该属性(两个_)
+			 * 
+			 * 
+			 * 原型对象就相当于一个公共的区域，同一个类的实例都可以访问到这个原型对象
+			 *     我们可以将对象中共有的内容，统一设置到原型对象中
+			 * 所以当我们访问对象的一个属性或方法时，他会先在对象自身中寻找，如果有则直接使用
+			 *     如果没有则会去原型对象中寻找，找到了就直接使用
+			 * 构造函数时可以将对象  共有的  属性和方法，统一添加到原型对象中
+			 * 不需要分别为每一个对象添加，也不会影响到全局作用域，就可以使每个对象都具有这些属性和方法
+			 * 使代码重复率降低
+			 */
+			function My(){
+				
+			}
+			//向My的原型中添加属性a
+			My.prototype.a=123;//这样的话mc，和mc2里面是没有a的，是去原型对象里找了
+			var mc=new My();
+			console.log(mc.a);
+			//向My的原型中添加一个方法
+			My.prototype.sayhello=function(){
+				console.log("hello");
+			}
+			mc.sayhello();
+			var mc2=new My();
+			mc2.sayhello();
+			console.log(mc.__proto__==My.prototype);//true，是同一个
+			console.log(mc2.__proto__==My.prototype);//true，是同一个
+			
+			//这样在提到刚才的sayage，可以将sayage添加到原型中
+			function Ab(name,age){
+				this.name=name;
+				this.age=age;
+			}
+			//添加到原型对象中
+			Ab.prototype.saybyebye=function(){
+				console.log(this.name+"要和你说再见了");
+			}
+			var a=new Ab("褚宏爱",18);
+			a.saybyebye();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

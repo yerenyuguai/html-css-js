@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>留言页面</title>
+		<link rel="stylesheet" href="../css/three.css" />
+	</head>
+
+	<body>
+		<div id="div_1">
+			<h1>留言信息</h1>
+			<h3>请留下你的信息</h3>
+		</div>
+		<div id="div_2">
+			<table style="border-collapse: separate; border-spacing: 10px 10px;">
+				<tr>
+					<td>
+						<p>姓名:</p>
+						<input type="text" name="nm" id="text" placeholder="请在这里输入">
+					</td>
+					<td>
+						<p>年龄:</p>
+						<input type="number" name="nl" id="text" min="0" max="100">
+					</td>
+					<td>
+						<p>邮箱:</p>
+						<input type="email" name="yx" id="text" placeholder="请在这里输入">
+					</td>
+					<td>
+						<p>联系电话:</p>
+						<input  placeholder="请在这里输入" id="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+					</td>
+					<td>
+						<p>联系地址:</p>
+						<input type="text" name="address" id="text" placeholder="请在这里输入">
+					</td>
+					<td><p>留言:</p>
+						<textarea  id="text1" name="info" rows="5" cols="130" wrap="hard" placeholder="请在这里输入"></textarea>
+					</td>
+				</tr>
+			</table>
+			<input  id="text_sumbit" type="submit" value="提交">
+			<input  id="text_reset" type="reset"  value="重置">
+			<h4 align="center">版权所有&copy;软件B191邵昱赫201907044129</h4>
+		</div>
+	</body>
+</html>

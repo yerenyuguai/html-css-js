@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+        	作者：offline
+        	时间：2022-02-14
+        	描述：获取元素的子节点
+        	
+        -->
+        <script type="text/javascript">
+			window.onload = function() {
+				/*
+				 * 点击按钮切换图片，点击上一张换到上一张，点击下一张换到下一张
+				 */
+				//获取两个按钮
+				var next = document.getElementById("next");
+				var last = document.getElementById("last");
+				//需要首先获得第一张的信息
+				var changephoto = document.getElementsByTagName("img")[0];
+				//创建一个数组保存图片的路径
+				var imgarr = ["../img/1.png", "../img/2.png", "../img/3.png", "../img/4.jpg", "../img/5.jpg"];
+				//创建一个变量保存当前的索引
+				var index = 0;
+				//设置提示文字 ，获取info的p元素
+				var info = document.getElementById("info");
+				//分别为两个按钮绑定单击响应函数
+				next.onclick = function() {
+					//更改图片就是  修改一个元素的属性
+					index++;
+					if(index > imgarr.length - 1) { index = 0; }
+					//将图片的链接更改为index相对应的src
+					changephoto.src = imgarr[index];
+					//更改info属性
+					info.innerHTML = "一共" + imgarr.length + "张,当前是第" + (index + 1) + "张";
+				}
+				last.onclick = function() {
+					index--;
+					if(index < 0) { index = imgarr.length - 1; }
+					changephoto.src = imgarr[index];
+					info.innerHTML = "一共" + imgarr.length + "张,当前是第" + (index + 1) + "张";
+				}
+			}
+		</script>
+		<style>
+			#photo {
+				margin-top: 120px;
+				width: 300px;
+				height: 150px;
+				background-color: bisque;
+				/*设置下一张上一张的位置*/
+				text-align: center;
+			}
+			
+			#photo img {
+				margin-top: 10px;
+				margin-left: 10px;
+				width: 150px;
+				height: 100px;
+			}
+			
+			p {
+				text-align: center;
+				background-color: grey;
+				color: orangered;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="photo">
+			<img src="../img/1.png">
+			<button id="last">上一张</button>
+			<button id="next">下一张</button>
+			<p id="info">一共五张，当前是第1张</p>
+		</div>   
+	</body>
+
+</html>

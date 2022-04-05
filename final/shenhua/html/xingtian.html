@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>刑天舞干戚</title>
+		<link rel="stylesheet" href="../css/shenghua.css">
+		<style>
+			.text{
+				margin-left:100px;
+				width:70%;
+			}
+			img{
+				width:100%;
+				height:380px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="divboss">
+				<div id="left" class="div1">
+					<div class="left_div">
+						<span id="sheng" >神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi">事</span>
+					</div>
+				</div>
+				
+				<div id="middle" class="div2">
+					<span style="font-size: 40px;"><i>刑天舞干戚~</i></span>
+					<div class="text">
+					    <p>&nbsp;&nbsp;&nbsp;&nbsp;刑天舞干戚的神话故事：刑天舞干戚的意思是什么？. 刑天舞干戚是古代 汉族 神话传说之一，刑天是《 山海经 ·海外西经》中的人物，原是一个无名的巨人，因和 黄帝 争神座，被黄帝砍掉了脑袋。. “刑天”这个名字的意思就是：天者，颠也;刑者，戮也。. 天就是天帝，“刑天”就表示誓戮天帝以复仇。. 接下来随着小编一起来看看刑天舞干戚的神话故事! 刑天出生在南方，成长为一名巨神后，被 炎帝 相中，做了炎帝的属臣。. 身材巨大的刑天，不仅勇武骠 (biao)悍 (han)，而且还有较高的音乐素养和才华。. 他一直跟随着炎帝，帮助炎帝治理国家，教导人民从事生产。. 为表示他对炎帝慈善的性格和开明的国政的敬佩，刑天为炎帝作了一组歌曲，以赞美炎帝的功绩和德政。</p>
+						<br><br>
+						<img src="../img/xingtian.jpg">
+					</div>
+					
+				</div>
+				<div id="right" class="div3">
+					<div class="left_div">
+						<span id="sheng2">神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua2">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu2">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi2">事</span>
+					</div>
+				</div>
+			</div>
+		</body>
+		<script  src="../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+			var str = ["#000000","#2F0000","#600030","#460046","#3C3C3C","#600000","#9F0050","#D9006C","#00E3E3","#02F78E","#28FF28","#EA7500","#FFDC35","#FFF8D7","#6FB7B7","#CF9E9E","#F3F3FA","#9F4D95","#336666","#CCFF80","#EAC100","#642100","#CEFFCE","#96FED1","#00E3E3"];
+			var hanziLeft = ["#sheng","#hua","#gu","#shi"];
+			var hanziRight = ["#sheng2","#hua2","#gu2","#shi2"];
+			$(function(){
+				setInterval("changeColor()",300);
+			});
+			
+			/* 实现文字颜色动态改变 */
+			function changeColor(){
+				//随机获取一个颜色
+				var len = str.length
+				var index = Math.round(Math.random()*len+1);
+				//随机获取一个字
+				var index2 = Math.round(Math.random()*4);
+				$(hanziLeft[index2]).attr("style","color:"+str[index]);
+				$(hanziRight[index2]).attr("style","color:"+str[index]);
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+*{margin: 0;padding: 0;}
+.container{text-align:center;margin:0 auto;padding:0;clear:both;}  
+.mtimg
+{
+    background-image:linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url(../img/mountain.jpg); 
+	width: 40%;height: 800px;text-align:center;display:inline-block;
+}
+.mtimg a{color: ghostwhite;font-size: 100px;font-family: "楷体";text-decoration: none;line-height: 700px;}
+.mtimg:hover
+{
+    background-image:linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9) ),url(../img/mountain.jpg);
+	width: 40%;height: 800px;text-align:center;display:inline-block;
+}
+.mtimg p{text-align: center;color: ghostwhite;font-size: 40px;font-family: "楷体";}
+.seimg
+{
+    background-image:linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url(../img/sea.jpg);
+	width: 40%;height: 800px;text-align:center;display:inline-block;
+}
+.seimg a{color: ghostwhite;font-size: 100px;font-family: "楷体";text-decoration: none;line-height: 700px;}
+.seimg:hover
+{
+    background-image:linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9) ),url(../img/sea.jpg);
+	width: 40%;height: 800px;text-align:center;display:inline-block;
+}
+.seimg p{text-align: center;color: ghostwhite;font-size: 40px;font-family: "楷体";}

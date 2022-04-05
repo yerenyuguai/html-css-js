@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//宿主对象  由js运行环境提供的对象，目前主要是浏览器提供的对象
+			//比如BOM(浏览器对象模型)  DOM(文档对象模型)
+			
+			/*
+			 *   DOM(文档对象模型)  Document Object Model
+			 * ●DOM ,全称Document Object Mode|文档对象模型。
+               ●JS中通过DOM来对HTML文档进行操作。 只要理解了DOM就可以随心所欲的操作WEB页面。
+               ●文档           文档表示的就是整个的HTML网页文档(一个网页)
+               ●对象          对象表示将网页中的每一 个部分都转换为了一 个对象。
+               ●模型         使用模型来表示对象之间的关系，这样方便我们获取对象。
+               ●节点         构成网页最基本的部分，网页每一个部分都可以成为节点，标签，注释，属性，
+                                                         甚至整个文档都是一个节点。虽然都是节点，但具体类型不同，
+ 标签  元素节点（html的各种标签）             属性    属性节点（元素属性）  
+ 文本  文本节点（html标签的文本内容）              文档  文档节点（整个网页）
+			 */
+			//由于HTML文档被浏览器解析后就是一棵DOM树，要改变HTML的结构，
+			//就需要通过JavaScript来操作DOM。DOM树可以看成标签组成的骨架，
+			//而css和JS是它的血与肉。
+		</script>
+	</head>
+	<body>
+		<!--
+        	作者：offline
+        	时间：2022-02-12
+        	描述：
+        	浏览器在加载一个页面时，是按照自上向下的顺序加载的
+        	读取到一行就运行一行
+        	
+        	所以将js代码编写到页面的下部就是为了 可以在页面加载完毕后在执行js代码
+        	
+        	但是如果非要把代码写到上边该怎么办呢
+        	用到了一个事件 onload  
+        	  onload事件会在整个页面或图像加载完成之后才触发
+        	  支持该事件的对象  image  layer  window
+        	  所以用window来绑定事件
+        	   
+        	window.onload=function(){
+        		需要的js代码(没有script标签)
+        	}
+        	这样页面加载完毕之后才会执行这里的代码
+        	确保js代码执行前所有的DOM对象已经加载完毕
+        	
+        	
+        	写在下面更推荐,考虑性能
+        -->
+		<button id="btn" ondblclick="alert('野浩吃醋治景了');">我是拐子</button>
+		<button id="btn1">我是野浩</button>
+		<!--
+        	onclick  点击一次
+        	ondblclick   双击
+        	onmousemove  鼠标移动到按钮就反应
+        	
+        	<button id="btn" onclick="alert('野浩吃醋治景了');">我是拐子</button>
+        	这种写法我们称之为结构和行为耦合，不方便维护，不推荐使用
+        -->
+		<script type="text/javascript">
+			/*
+			 * 浏览器已经为我们提供文档节点对象，这个对象就是window对象的属性
+			 *  全局变量  可以在页面中直接使用，文档节点代表的是我们整个网页
+			 */
+			console.log(document);//document就是文档节点
+			//获取到button对象
+			//getElementById()  意思为获取get  一个元素element 通过by id
+			var btn=document.getElementById("btn");//获取到id为btn的元素
+			//修改按钮的文字  inner内部  Html代码
+			btn.innerHTML="拐子是孙宇宇对象";//修改文本节点
+			
+			/*
+			 *   事件  
+			 *   就是文档或浏览器窗口中发生的一些特定的交互瞬间 
+			 *   js和HTML之间的交互就是通过事件实现的
+			 *    如  点击某按钮，按键盘哪一个键，关闭窗口
+			 */
+			//我们可以在事件对应的属性中加入一些js代码,这样当事件触发时，这些代码将会执行
+			//onclick  点击
+			
+			//获取按钮对象
+			var btn1=document.getElementById("btn1");
+			/*
+			 * 可以通过为按钮的对应事件绑定处理函数的形式来响应事件
+			 * 这样 当事件被触发时，其对应函数将被调用
+			 */
+			//绑定一个单击事件
+			btn1.onclick=function(){
+				alert("乳液大亨");
+			};
+			
+			
+			//获取元素节点对象  document来调用
+		//document.getElementById();  通过id获取一个元素节点对象(id是唯一，节点获取也唯一)
+		//document.getElementsByTagName();   通过标签名获取一组元素节点对象
+		//document.getElementsByName();   通过name属性获取一组元素节点对象
+		</script>
+	</body>
+</html>

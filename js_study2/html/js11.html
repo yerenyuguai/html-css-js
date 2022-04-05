@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box5 {
+				width: 100px;
+				height: 100px;
+				background-color: aqua;
+				position: absolute;
+				/*开启定位才能移动*/
+				left: 0;
+			}
+			#box7 {
+				width: 100px;
+				height: 100px;
+				background-color: cornflowerblue;
+				position: absolute;
+				/*开启定位才能移动*/
+				left: 0;
+				top: 300px;
+			}
+			#box6 {
+				width: 0;
+				height: 1000px;
+				top: 0;
+				left: 800px;
+				border-left: 1px black solid;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button id="Btn7">点击按钮以后  box1向右出发</button>
+		<br><br><button id="Btn8">box2向右出发</button>
+		<button id="Btn71">box2往左回退</button>
+		<br><br>
+		<button id="Btn9">测试，实现更多动画效果</button>
+		<br><br><br>
+		<div id="box5"></div>
+		<div id="box7"></div>
+		<div id="box6"></div> <!--终点线-->
+                            
+		<br>
+		
+	</body>
+	<script type="text/javascript">
+		//开启一个计时器
+		/* setInterval(function(){
+		  	console.log(1);
+		  },3000);
+		上面的是定时调用
+		而下面的是延时调用，延时调用一个函数并不会马上执行，而是会隔一段时间以后在执行，三秒以后在执行
+		
+		但是延时调用只会执行一次   (比如视频前的广告)
+		定时调用执行多次
+		
+		
+		这两个是可以互相代替的   定时调用只调用一次，就是延时调用   一个延时调用，调用多次变为定时调用
+		在开发中根据自己需要   定时调用多一点
+		*/
+		//      var time = setTimeout(function() {
+		//	      console.log(1);
+		//      }, 3000);
+		//这里的3000就指的是3秒后在调用   即为3秒后显示1
+
+		//使用clearTimeout()关闭延时调用
+		//        clearTimeout(time);  
+
+		window.onload = function() {
+			//获取box5
+			var box5 = document.getElementById("box5");
+			//获取btn
+			var btn = document.getElementById("Btn7");
+			var btn2 = document.getElementById("Btn71");
+			//点击按钮，box5就向右移动
+			btn.onclick = function() {
+
+				//这里注意到连续点击按钮速度会愈来愈快，和前面的图片一样，所以关闭上一个计时器
+				clearInterval(time);
+				//★★★★★★★★★★	
+
+				//开启一个定时器，实现执行动画效果
+				var time = setInterval(function() {
+					//获取box5原来的left值   ,parseint取有效数字，这样就去除了px的单位
+					var oldValue = parseInt(getStyle(box5, "left"));
+					//在oldValue的基础上增加
+					var newValue = oldValue + 23;
+
+					//将新值设置给box5
+					box5.style.left = newValue + "px";
+
+					//我们希望当box移动到800px，就停下
+					if(newValue >= 800) {
+						//到达就把定时器关闭
+						clearInterval(time);
+						//确保停的位置与黑线相吻合
+						box5.style.left = 800 + "px";
+					}
+				}, 300);
+
+			}
+			
+			var box7 = document.getElementById("box7");
+			btn2.onclick = function() {
+				//这样用户输入时，就不需要输入符号，优化体验
+				//如果开头不判断的话，必须要输入  -13
+				move(box7,"left", 0, 13);
+			}
+			
+			
+			
+		
+			//获取Btn8
+			var btn3=document.getElementById("Btn8");
+			btn3.onclick=function(){
+				move(box7,"left",800,20);
+			}
+			var btn4=document.getElementById("Btn9");
+			btn4.onclick=function(){
+				move(box7,"width",800,20,function(){
+					move(box5,"height",800,30,function(){
+						alert("这种方式可以无限套娃，一个动画完成之后，在执行下一个动画效果");
+					});
+				});
+			}
+
+		};
+		
+		
+		
+		
+		/*  这时候发现  如果按钮2在按钮一的基础上适当修改，重合率很高，我们可以提取出来变成一个函数
+		 *   
+		 */
+		//尝试创建一个可以执行简单动画的函数
+
+        //var time;
+        //变成全局变量,方便这些使用，但是如果变为全局变量，就意味着所有按钮共用一个计时器
+        //点击按钮一后,再点击按钮二，如果有置零计时器，则就会出现，交替使用计时器，
+        //所以要按照下面的obj.time  为每一个都创建一个计时器
+
+		//obj  要执行动画的对象     target执行动画的目标位置    length步长   正数向右移动，负数向左
+		//attr  要执行动画的样式 比如left，top，width,height。。。
+		//callback  回调函数，将会在动画执行完毕之后执行
+		
+		//★★★★★★★★★★★★★★★★★★★★★★★★★★
+		function move(obj,attr,target, length,callback) {
+			clearInterval(obj.time);
+			
+			//判断步长的正负值
+			//获取元素目前的位置  
+			//获取box原来的left值   ,parseint取有效数字，这样就去除了px的单位
+				var current = parseInt(getStyle(obj,attr));
+			 if(current>target){
+			 	//若box原来的left值大于目标值，说明左移，变负
+			 	length=-length;
+			 }
+			
+			
+			//开启一个定时器，用来执行动画效果
+			//向执行动画的对象中添加一个time属性,用来保存他自己的定时器的标识
+			obj.time = setInterval(function() {
+
+				//获取box原来的attr值   ,parseint取有效数字，这样就去除了px的单位
+				var oldValue = parseInt(getStyle(obj, attr));
+				//在oldValue的基础上减少
+				var newValue = oldValue + length;
+
+				//当向左移动，需要判断newValue是否小于target//当向右移动  需要判断newValue是否大于target
+				if((newValue < target && length < 0) || (newValue > target && length > 0)) {
+					newValue = target;//保证在终点处停下
+				}
+
+				//将新值设置给box   因为attr是变量，不能写为 style.attr  要写为style[attr] 
+				obj.style[attr] = newValue + "px";
+				if(newValue == target) {
+					//到达就把定时器关闭
+					clearInterval(obj.time);
+					
+					//动画执行完毕，调用回调函数 ，执行一次
+					//这种形式保证如果函数传参没有传入回调函数，就不执行，传入就执行
+					callback&&callback();
+				}
+			}, 300);
+		}
+
+		//定义一个函数，用来获取指定元素的当前样式
+		// 参数  ：obj  要获取的元素      name 要获取的样式名
+		function getStyle(obj, name) {
+			if(window.getComputedStyle) {
+				//正常浏览器的方式
+				return getComputedStyle(obj, null)[name];
+			} else {
+				return obj.currentStyle[name];
+			}
+		}
+	</script>
+
+</html>

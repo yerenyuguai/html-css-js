@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function fun(){
+				console.log(this.name);
+			}
+			/*
+			 * 函数对象的方法
+			 *  call()  apply()
+			 * 需要函数对象来调用 , 即为fun
+			 * 当对函数调用call()和apply()都会都会调用函数执行
+			 */
+			//fun.call();
+			//fun();
+			//fun.apply();
+			//三者功能一样,都会输出"我是fun函数"
+			//但不同的是，在调用call()和apply()都可以将一个对象指定为第一个参数
+			//此时这个对象将会成为函数执行的this
+			var obj={
+			name:"name1"
+			}
+			var obj2={
+			name:"name2"
+			}
+			fun.call(obj);//参数是谁，this就指向谁   而fun(),this指向的是window
+			fun.call(obj2);
+			//★★★★★★★★★★
+			//call()实参可以将实参在对象之后依次传递
+			//function fun(a,b){};
+			//fun.call(obj,a,b);
+			//而fun.apply(obj,a,b);会报错
+			//apply()需要将实参封装到一个数组中统一传递
+			//fun.apply(obj,[a,b]);  a,b被中括号括起来表示是个数组
+			//回顾this
+			//以函数形式调用时，this指向window
+			//以方法形式调用，this是调用方法的对象
+			//以构造函数的形式调用时，this是新创建的那个对象
+			//使用call()和apply()调用时，this就是指定的那个对象
+			/*
+			 *
+			 * 在调用函数时，浏览器每次都会传递两个隐含的参数
+			 *   1.  函数的上下文参数 this
+			 *   2.  封装实参的对象 arguments
+			 *     arguments是一个类数组对象，不是数组
+			 * 它可以通过索引来操作数据，也可以获取长度
+			 * 在调用函数时，我们所传递的实参都会封装到arguments中保存
+			 * arguments.length获取实参的数量
+			 *   arguments有一个属性，对应的是callee
+			 * 这个属性对应一个函数对象，就是当前函数正在指向的函数对象
+			 */
+			function fun1(){
+				console.log(arguments.length);//四个实参
+				console.log(arguments[0]);//获取索引为0的元素，所以发现没定义形参
+				//arguments也可以使用形参，所以定不定义形参arguments都可以用实参
+				console.log(arguments.callee);
+			}
+			fun1("hello",true,1,undefined);
+			/*
+			 * 
+			 * Date对象  
+			 * 在js中使用Date对象来表示一个时间
+			 */
+			//创建一个对象
+			//如果直接使用构造函数创建一个Date对象，则会封装为当前代码执行的时间
+			var d=new Date();
+			console.log(d);
+			//创建一个指定的事件对象
+			//需要在构造函数中传递一个表示时间的字符串作为实参
+			var d2=new Date("03/02/2001 09:45:22");
+			//日期格式               月份/日/年份 时:分:秒
+			console.log(d2);
+			//getDate()获取当前日期对象是几号
+			console.log("是几号："+d2.getDate());
+			//getDay()获取当前日期对象是一周中的第几天，周几 返回值 0~6,0表示周日
+			console.log("是周几："+d2.getDay());
+			//getMonth()获取当前日期对象是第几月
+		  //★★ ★ ★ ★      范围 为0~11， 0表示1月,11表示12月   
+			console.log("是几月："+(d2.getMonth()+1));
+			//getFullYear()以   四位数字   返回年份
+			console.log("是哪一年："+d2.getFullYear());
+			//getHours()获取小时， 0~23
+			console.log("小时为："+d2.getHours());
+			//getMinutes()获取分钟， 0~59
+			console.log("分钟为："+d2.getMinutes());
+			//getSeconds()获取秒数， 0~59
+			console.log("秒数为："+d2.getSeconds());
+			console.log("毫秒数为："+d2.getMilliseconds());
+			//getTime()  获取当前日期对象的时间戳
+			//指的是从格林威治标准时间  1970年1月1日0时0分0秒到当前日期花费的毫秒数
+			//可以计算  一千毫秒=一秒
+			//因为传输日期有年月日等很麻烦，直接统一换成毫秒便于计算和保存
+			//计算机底层保存时间都是采用时间戳
+			console.log(d2.getTime());
+			console.log(d2.getTime()/1000/60/60/24/365);
+			//1970年1月1日0时0分0秒到当前日期花费的年份
+			//获取当前的时间戳
+			time=Date.now();
+			console.log("当前时间戳为"+time);
+			//可以用时间戳来测试代码的性能
+			start=Date.now();
+			for(var i=0;i<100;i++){
+				console.log(i);
+			}
+			end=Date.now();
+			console.log("执行用了"+(end-start)+"毫秒");
+			/*
+			 * Math   
+			 *   Math和其他对象不同，他不是构造函数，属于一个工具类
+			 * 封装了数学运算相关的属性和方法
+			 */
+			console.log("圆周率"+Math.PI);
+		    //abs()可以返回数的绝对值
+		    console.log(Math.abs(-1));//求-1绝对值
+		    //ceil()会将值进行上舍入
+		    console.log("上舍入为"+Math.ceil(1.04));//即为1.x都会进一位变为2
+		    //floor()会将值进行下舍入
+		    console.log("下舍入为"+Math.floor(9.99));//即无论小数多少都直接忽略
+		    //四舍五入   round()
+		    console.log("四舍五入为"+Math.floor(3.27));//对数值进行四舍五入
+		    //random() 随机生成[0,1)之间的随机数
+		    console.log(Math.random());
+		    console.log(Math.round(Math.random()*8)+2);
+		    //随机生成[2,10)之间的整数，round()进行了四舍五入
+		    //生成x-y之间的随机数
+		    //Math.round(Math.random()*(y-x)+x)
+		    //max()
+		    //可以获取多个数中的最大数
+		    max=Math.max(1,4,2,65,87,2,3,4,5,6);
+		    console.log("max="+max);
+		    //min()   可以获取多个数中的最小数 
+		    console.log("min="+Math.min(1,4,2,65,87,2,1,4,5,6));
+		    //pow(x,y)  返回x的y次幂
+		     console.log("幂="+Math.pow(2,3));
+		    //sqrt()  将一个数进行开方运算
+		     console.log("开方后:"+Math.sqrt(9.1));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

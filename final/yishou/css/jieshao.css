@@ -1,0 +1,35 @@
+
+.container{/*定义外层样式*/
+	width:100%;
+}
+
+.header{height:150px; line-height:100px;text-align:center;}
+.main{height:500px;}
+.footer{height:100px; line-height:100px;}
+a{padding:15px 30px;text-decoration:none;}
+
+/*header*/
+.logo{height:30px;}
+.select{ 
+	text-align:center;
+	width:90%; 
+	height:80px; 
+	line-height:80px;
+	margin:0 auto;
+}
+.select ul{margin:0px; padding:0px; list-style:none;}
+.select ul li{display:inline; margin:0px 10px;}
+.select a{color:#000000; background:cornflowerblue;}
+.select a:hover{background:#FFD700;}
+
+/*main*/
+
+.left{width:30%;height:500px;float:left;}
+.center{width:60%;height:500px;float:left;}
+
+ul{list-style-type:none;}
+li{}
+.left ul{padding-left:35%}
+.left ul li{margin:10px 0px;}
+.center p{text-indent: 2em;font-size: 20px;line-height: 170%;letter-spacing: 2px;}
+

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：
+        	1.js严格区分大小写，html和css倒不区分
+        	2.js每一条语句以分号结尾 ;,如果不写也可以，系统会自动添加，但会消耗一些系统资源
+        	所以还是养成加分号;的习惯
+        	3.js会忽略多个空格和换行，所以可以利用空格和换行对代码进行格式化
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：
+        	字面量，都是一些不可改变的值(常量)
+        	比如：1 2 3 4 5 "hello"   都是可以直接使用,
+        	比如    alert(1231354341);
+        	但一般都不会直接使用字面量，就用变量
+        	变量可以用来保存字面量，而且变量的值可以任意改变，更加方便我们使用
+        	如x=12312154132;
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：标识符
+        	1.在js中所有的可以由我们自主命名的都可以称为是标识符
+        	2.例如变量名，函数名，属性名都是属于标识符
+        	3.命名一个标识符需要遵守如下规则
+        	   可以含有字母 、数字、_、$ 只有这四类
+        	   不能以数字开头
+        	   标识符不能是js中的关键字或者保留字
+        	   标志符一般采用驼峰命名法，如 abc_2
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：数据类型
+        	1.在js中一共有六种数据类型
+        	  String 字符串
+        	  Number 数值(包括整数，浮点数)
+        	  Boolean 布尔值
+        	  Null 空值
+        	  Undefined 未定义
+        	  Object 对象
+        	前五个是基本数据类型，object是引用数据类型
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：String 字符串
+        	在字符串中需要用引号括起来，单引号双引号都可以 ，但不能混着用，既有单引和双引    
+        	var str="我说:'今天天气真不错'";
+        	console.log(str);
+        	如果还是想用双引号的话，就用到转义符 \
+        	var str1="我说:\"今天天气真不错\"";
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：js中可以表示数字的最值
+        	   Number.MAX_VALUE
+        	   输出值为   1.7976931348623157e+308
+        	   Number.MIN_VALUE  大于0的最小数
+        	  输出值为   5e-324
+        	   如果超过会输出 Infirity 表示正无穷，(-Infirity则表示负无穷)
+        	   typeof检查Infirity会返回number类型
+        	NaN也是一个特殊的数字，not a number，同样返回number类型
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：Boolean类型，用来做逻辑判断
+        	只有两个  true 和  false
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：NUll和Undefined
+        	null表示一个空值的对象   typeof类型显示为object类型
+        	Undefined表示一个未初始化的对象，定义对象，但没有赋初值  typeof类型返回Undefined类型
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：强制类型转化(某种类型，转化为Number，Boolean，String三种)
+        	
+        	转换为String 
+        	
+        	      方式一    调用被转换类型的toString()方法,是个返回值（NUll和Undefined这俩没有该方法）
+        	var a=123;//为Number类型
+        	console.log(a.toString());
+        	     方式二  调用String()方法，并将被转换的数据作为参数传递给函数
+        	     (NUll会直接变为"null",Undefined同理)
+        	var a=123;//为Number类型
+        	a=String(a);
+        	console.log(a);
+        	
+        	
+        	
+        	
+        	转换为 number
+       方式一  使用Number()函数
+        	   如果a="非数字"，类型为number，值为NaN
+        	   如果是a="空串或空格",类型为number，值为0
+        	   如果a=true ,类型为number，值为1
+        	   如果a=false ,类型为number，值为0
+        	     如果a=null ,类型为number，值为0
+        	       如果a=Undefined ,类型为number，值为NaN
+        	         var a="123";
+        	         a=Number(a);
+        	         console.log(a);
+     方式二 专门对付字符串  
+     parseInt()把一个字符串转换成一个整数
+     parseFloat()把一个字符串转换为浮点数
+                 var a="123px"
+                 //调用parseInt()函数将a转换为number
+                 a=parseInt(a);
+                 console.log(a);
+                 //输出结果为123，后面的px不转换，但如果是a="123px456",
+                 从遇到第一个非数字就结束了，也就是px456不转化
+                 还有如果是a="123.456px",parseInt()只能转化123
+                 这就要用到parseFloat()把一个字符串转换为浮点数
+                 var a="123.456px"
+                 //调用parseFloat()函数将a转换为number
+                 a=parseFloat(a);
+                 console.log(a);
+                
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：转换为其他进制的数
+        	在js中，如果需要表示16进制的数，要以0x开头
+        	var a=0x10;//十六进制的10，值为16，0xff值为255
+        	在js中，如果需要表示8进制的数，要以0开头，有些浏览器会当成8进制，有的会当成10进制
+        	所以有个方法
+        	var a=070;//八进制的70，值为56
+        	parseInt(070,10);//070表示值，10表示10进制
+        	
+        	如果表示2进制（比较少），需要0b开头，并非所有浏览器都支持，有的可能会报错
+        	var a=0b11;//二进制的11，表示3
+        	
+        -->
+        <!--
+        	作者：offline
+        	时间：2022-02-07
+        	描述：转换为Boolean值
+        	使用   Boolean()函数
+        	var a=123;
+        	a=Boolean(a);
+        	console(a);//输出为true
+        	为false的情况为，a=0,a=NaN,a=" ",a=null,a=Undefined
+        	对象也会为true
+        -->
+        <script type="text/javascript">
+        	//声明变量
+        	//在js中用var关键字来声明一个变量
+        	var a="拐子";
+        	var b=12;
+        	console.log(a);
+        	console.log(b);
+        	var str="我说:'今天天气真不错'";
+        	console.log(str);
+        	var str1="我说:\"今天天气真不错\"";
+        	console.log(str1);
+        	var a=123;
+        	var b="123";
+        	//可以使用一个运算符  typeof 检查变量的类型 
+        	//typeof 变量
+        	console.log(typeof a);
+        	console.log(typeof b);
+        	//输出最大值
+        	console.log(Number.MAX_VALUE);
+        	//输出最小值
+        	console.log(Number.MIN_VALUE);
+        	//可以直接运算
+        	var c=123+233;
+        	console.log(c);
+        	//但是如果js进行小数运算，可能得到一个不精确的结果,千万不要用js运算计算度要求高的
+        	var d=0.1+0.2;
+        	console.log(d);
+        	var a="123.456px"
+                 //调用parseFloat()函数将a转换为number
+                 a=parseFloat(a);
+                 console.log(a);
+        </script>
+    </head>    
+	<body>
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>凤凰应龙</title>
+		<link rel="stylesheet" href="../css/shenghua.css">
+		<style>
+			.text{
+				margin-left:100px;
+				width:70%;
+			}
+			img{
+				width:100%;
+				height:380px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="divboss">
+				<div id="left" class="div1">
+					<div class="left_div">
+						<span id="sheng" >神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi">事</span>
+					</div>
+				</div>
+				
+				<div id="middle" class="div2">
+					<span style="font-size: 40px;"><i>凤凰应龙~</i></span>
+					<div class="text">
+					    <p>&nbsp;&nbsp;&nbsp;&nbsp;《祁阳贾侯神道碑》记载：“乾坤破碎、溟涬茫昧……应龙腾举托天开，垂云矫翼廓清氛”，记载远古时天地破灭，元气湮灭后应龙重开天地，恢复人间元气之事   ，而此状态于《云笈七签》中被形容为“元气溟涬……人为万物，不知东西南北，人化为禽兽，禽兽化为人。真人乃在元气之上，仙人乃在绝域无崖之际，道人隐居”  。
+无独有偶，不仅有应龙开天记载，还有其创造大地的神话传说。《全唐文》中记载长孙无忌曾上表说：“应龙辟壤，致宅土于遐年……天之祚圣，复在于兹”，称应龙开辟了世人所居的大地   。在“盘古神话的起源故乡”桐柏一带，有着《应龙生盘古》的传说，说应龙生下了盘古。
+应龙除了拥有创世之力、救世之功外，还拥有灭世之能，其威能远超钟山烛龙借助火精而得的昼夜变换之力。《钱塘集》记载当应龙含怒飞天时，能够直接令当空的烈日消失，同时使天地万物抵达终结的状态，称为“天地昏蒙而万物否”，否指“变坏、灭绝”  。
+《阮籍集》说当应龙伸展身姿，可以充塞整个宇宙，但当她收缩身形之时，却可以进入无间之间。而其常态则是龙首枕于星宿、张宿，龙尾挂于柳宿、井宿，身体倚靠于太微垣三台。</p>
+						<br><br>
+						<img src="../img/fenghuang.jpg">
+					</div>
+					
+				</div>
+				<div id="right" class="div3">
+					<div class="left_div">
+						<span id="sheng2">神</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="hua2">话</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="gu2">故</span>
+					</div>
+					<br>
+					<div class="left_div">
+						<span id="shi2">事</span>
+					</div>
+				</div>
+			</div>
+		</body>
+		<script  src="../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+			var str = ["#000000","#2F0000","#600030","#460046","#3C3C3C","#600000","#9F0050","#D9006C","#00E3E3","#02F78E","#28FF28","#EA7500","#FFDC35","#FFF8D7","#6FB7B7","#CF9E9E","#F3F3FA","#9F4D95","#336666","#CCFF80","#EAC100","#642100","#CEFFCE","#96FED1","#00E3E3"];
+			var hanziLeft = ["#sheng","#hua","#gu","#shi"];
+			var hanziRight = ["#sheng2","#hua2","#gu2","#shi2"];
+			$(function(){
+				setInterval("changeColor()",300);
+			});
+			
+			/* 实现文字颜色动态改变 */
+			function changeColor(){
+				//随机获取一个颜色
+				var len = str.length
+				var index = Math.round(Math.random()*len+1);
+				//随机获取一个字
+				var index2 = Math.round(Math.random()*4);
+				$(hanziLeft[index2]).attr("style","color:"+str[index]);
+				$(hanziRight[index2]).attr("style","color:"+str[index]);
+			}
+			
+		</script>
+	</body>
+</html>

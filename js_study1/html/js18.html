@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//模板
+			function myclick(idStr,fun){
+				var btn = document.getElementById(idStr);
+				btn.onclick = fun;
+			}
+			window.onload=function(){
+				//创建一个"元宵”节点 ,添加到#food下
+			myclick("btn01",function(){
+				//创建节点   <li>元宵</li>  所以是li标签
+					//创建li节点
+					//document.createElement()可以创建一个元素节点对象
+					//需要一个标签名作为参数，将会根据标签名创建元素节点对象
+					//并将创建好的对象作为返回值返回
+					var newli=document.createElement("li");
+					
+					//创建元宵文本节点
+					//下面的方法可以用来创建一个文本对象，
+					//需要一个文本内容作为参数，将会根据内容创建文本节点，并将新的节点返回
+					var text=document.createTextNode("元宵");
+					
+					//将节点加入到#food里,即为元宵是li的子节点
+					//appendChild()可以向一个父节点添加一个新的子节点
+					//用法：  父元素.appendChild(子节点)
+					newli.appendChild(text);
+					
+					//获取id为food的节点
+					var food=document.getElementById("food");
+					//将元宵放入到food里
+					food.appendChild(newli);			
+			})
+				
+				//将”元宵”节点插入到#rice前面
+			myclick("btn02",function(){
+					//创建元宵节点并放入li中
+					var newli=document.createElement("li");
+					var text=document.createTextNode("元宵");
+					newli.appendChild(text);
+					//获取rice节点
+					var rice=document.getElementById("rice");
+					//insertBefore()在指定的子节点中插入新的节点
+					//用法  父节点.insetrBefore(新节点，指定节点)
+					var food=document.getElementById("food");
+					food.insertBefore(newli,rice);
+			})
+				
+				
+				//使用“元宵"节点替换#rice节点
+				//replaceChild()替换子节点
+			myclick("btn03",function(){
+					var newli=document.createElement("li");
+					var text=document.createTextNode("元宵");
+					newli.appendChild(text);
+					//获取rice节点
+					var rice=document.getElementById("rice");
+					//获取父节点food
+					var food=document.getElementById("food");
+					//父节点.replace(新节点，被替换节点)
+					food.replaceChild(newli,rice);
+			})
+			
+				//删除#rice节点
+			myclick("btn04",function(){
+				var rice=document.getElementById("rice");
+				//删除子节点
+				//removeChild()删除子节点
+				//父节点.removeChild(子节点)
+				var food=document.getElementById("food");
+				food.removeChild(rice);
+				
+				//情况，不知道父元素是谁的情况下
+				rice.parentNode.removeChild(rice);
+				//这样更省事  更常用，只需要获取rice
+			})
+			
+			
+				//读取#food内的HTML代码
+				myclick("btn05",function(){
+					var food=document.getElementById("food");
+					alert(food.innerHTML);
+				})
+				
+				
+				//设置#rice内的HTML代码
+				myclick("btn06",function(){
+					var rice=document.getElementById("rice");
+					rice.innerHTML="香喷喷的大米饭"
+				})
+				
+				//向food里添加元宵
+				//使用innerHTML进行增删改查更好一点
+				//但是不建议用，因为这里的food里的每一个节点都是进行修改过的，如果绑定了事件，会失效
+				//一般和第一个结合使用，分情况
+				myclick("btn07",function(){
+					var food=document.getElementById("food");
+					//注意是+=  表示在原来的基础上在添加
+					food.innerHTML+="<li>元宵</li>";
+					//还有一个,更推荐使用下面的方法
+					/*
+					 * ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+					 * var li=document.createElement("li");
+					 * li.innerHTML="元宵"；
+					 * city.appendchild(li);
+					 */
+				})
+			};
+		</script>
+		<style>
+			.{
+				margin: 0;
+				padding: 0;
+			}
+			#total{
+				width: 300px;
+				height: 100px;
+			}
+			#inner{
+				height: 90px;
+				background: red;
+			}
+			ul{
+				background-color: wheat;
+			}
+			li{background-color: chocolate;
+			color: #FFFF00;
+			display: inline;
+			margin-left: 7px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="total">
+			<div class="inner">
+				<p>
+					你喜欢吃什么主食
+				</p>
+				<ul id="food">
+					<li id="rice">米饭</li>
+					<li>面条</li>
+					<li>馒头</li>
+					<li>饼</li>
+				</ul>
+			</div>
+		</div>
+		<div id="btnList">
+			<div><button id="btn01">创建一个"元宵"节点,添加到#food下</button></div>
+			<div><button id="btn02">将 "元宵”节点插入到#rice前面</button></div>
+			<div><button id="btn03">使用"元宵"节点替换#rice节点</button></div>
+			<div><button id="btn04">删#rice节点</button></div>
+			<div><button id="btn05">读取#food内的HTML代码</button></div>
+			<div><button id="btn06">设置#rice内的HTML代码</button></div>
+			<div><button id="btn07">利用innerHTML创建"元宵"节点,添加到#food下</button></div>
+</div>
+	</body>
+</html>

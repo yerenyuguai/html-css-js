@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>应用固定布局模式实现</title>
+		<style type="text/css">
+			#all {
+				margin: 0;
+				padding: 0;
+				text-align: center;
+				left:80%;
+			 margin-left:270px;
+			}
+			
+			#guide {
+				width: 69%;
+				height: 60px;
+				background: red;
+				border: 2px solid;
+				border-radius: 2em;
+				margin-top: -20px;
+				margin-left: 130px;
+			}
+			
+			#underground {
+				width: 69%;
+				height: 560px;
+				background: antiquewhite;
+				border: 2px solid blue;
+			}
+			
+			#last {
+				margin-top: 10px;
+				width: 69%;
+				height: 50px;
+				background: green;
+				border: 2px solid blue;
+			}
+			
+			p {
+				font-size: larger;
+				color: #FFFF00;
+				padding-left: 20px;
+				padding-top: 10px;
+			}
+			
+			#square1 {
+				position: relative;
+				width: 200px;
+				height: 100px;
+				border: 2px solid greenyellow;
+				background: blueviolet;
+				top: 70px;
+				left: 100px;
+			}
+			
+			#square2 {
+				position: relative;
+				width: 200px;
+				height: 100px;
+				background: brown;
+				border: 2px solid greenyellow;
+				left: 180px;
+			}
+			
+			#square3 {
+				position: relative;
+				width: 200px;
+				height: 100px;
+				background: palegreen;
+				border: 2px solid greenyellow;
+				bottom: 70px;
+				left: 240px;
+			}
+			
+			#circle {
+				width: 200px;
+				height: 150px;
+				border: 2px solid white;
+				border-radius: 100px;
+				background: green;
+				position: relative;
+				bottom: 430px;
+				left: 360px;
+			}
+			
+			#square4 {
+				position: relative;
+				width: 200px;
+				height: 100px;
+				background: magenta;
+				border: 2px solid greenyellow;
+				bottom: 240px;
+				left: 640px;
+			}
+			
+			#square5 {
+				position: relative;
+				width: 200px;
+				height: 100px;
+				background: darkblue;
+				border: 2px solid greenyellow;
+				bottom: 310px;
+				left: 560px;
+			}
+			
+			#square6 {
+				position: relative;
+				width: 200px;
+				height: 100px;
+				background: darkgoldenrod;
+				border: 2px solid greenyellow;
+				bottom: 380px;
+				left: 480px;
+			}
+		</style>
+	</head>
+
+	<body bgcolor="#808080">
+		<div id="all">
+			<div id="underground">
+				<div id="guide">
+					<p align="center">导航栏</p>
+				</div>
+				<div id="square1"></div>
+				<div id="square2"></div>
+				<div id="square3"></div>
+				<div id="square4"></div>
+				<div id="square5"></div>
+				<div id="square6"></div>
+				<div id="circle"></div>
+			</div>
+			<div id="last"></div>
+		</div>
+		<h4 align="center">版权所有&copy;软件B191邵昱赫201907044129</h4> 
+	</body>
+
+</html>

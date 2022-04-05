@@ -1,0 +1,85 @@
+#container{
+	padding: 0;
+	margin: 0;
+	font-family: 宋体;
+}
+#ziti{
+	font-family:"微软雅黑" ;
+	font-size: 20px;	
+}
+
+#header{
+
+	width: 100%;
+	height: 243px;
+	background:#7D26A8 url(../img/header23.png) no-repeat center center scroll;
+	margin-bottom: 70px;
+}
+#tbtx{
+	width: 170px;
+	height: 55px;
+	position: absolute;
+	top: 175px;
+	right: 90px;
+	background-image: url(../img/tx.jpg);
+}
+
+#liebiao {
+	width: 100%;
+	background: #660066;
+	position: absolute;
+	top: 247px;
+}
+#liebiao a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#liebiao a:hover{
+	color: #333333;
+	background: #F6F6F6;
+}
+
+#liebiao ul{
+	list-style-type: none;
+	padding: 0;
+	text-align: center;
+	color: #FFFF00;
+
+}
+#liebiao ul li{
+	display: inline;
+	margin: auto 1.8%;	
+}
+
+#main{
+	width: 100%;
+	height: 600px;
+}
+#left{
+	width: 50%;
+	margin-left:10%;
+	float: left;
+}
+#left p{
+	text-indent: 2em;
+}
+#left_up p{
+	line-height: 2em;
+}
+#right{
+	width: 35%;
+	float: right;	
+}
+#right_top{
+	margin-bottom: 200px;
+}
+#right_top ul{
+	list-style-type: none;
+}
+#right_top a{
+	color: blue;
+}
+
+#footer{
+	text-align: center;
+}
